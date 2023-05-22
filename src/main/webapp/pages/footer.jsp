@@ -11,12 +11,13 @@
 	rel="stylesheet"
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="../styles/headerFooter.css">
 </head>
 <body>
 	<footer class="container p-4 rounded">
 		<div class="d-lg-flex justify-content-between">
 			<div>
-				<span>LOGO</span>
+				<span><img id="smallLogo" src="../assets/logo.png" alt="our logo"></span>
 			</div>
 			<div class="copyright">
 				<p>
