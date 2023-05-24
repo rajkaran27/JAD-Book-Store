@@ -14,7 +14,7 @@
 <link rel="stylesheet" type="text/css" href="../styles/headerFooter.css">
 </head>
 <body>
-	<footer class="container p-4 rounded">
+	<footer class="container p-4 rounded mt-5">
 		<div class="d-lg-flex justify-content-between">
 			<div>
 				<span><img id="smallLogo" src="../assets/logo.png" alt="our logo"></span>

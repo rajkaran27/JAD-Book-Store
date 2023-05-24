@@ -37,19 +37,21 @@ public class SearchServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		// response.getWriter().append("Served at: ").append(request.getContextPath());
 		String path = request.getContextPath() + "/Practical 5/part4";
 
 		PrintWriter out = response.getWriter();
 		HttpSession session = request.getSession();
-		
-		String SearchQuery = request.getParameter("search");		
+
+		String SearchQuery = request.getParameter("search");
 		try {
+
+			StringBuilder htmlBuilder = new StringBuilder();
 			// Step1: Load JDBC Driver â TO BE OMITTED for newer drivers
 			Class.forName("com.mysql.jdbc.Driver");
 
 			// Step 2: Define Connection URL
-			String connURL = "jdbc:mysql://localhost/db1?user=root&password=Rajkaran27!&serverTimezone=UTC";
+			String connURL = "jdbc:mysql://localhost/bookstore?user=root&password=pjraj12!&serverTimezone=UTC";
 
 			// Step 3: Establish connection to URL
 			Connection conn = DriverManager.getConnection(connURL);
@@ -72,12 +74,22 @@ public class SearchServlet extends HttpServlet {
 				String title = rs.getString("title");
 				String src = rs.getString("image");
 				double price = rs.getDouble("price");
-				out.println("<li>");
-				out.println("<img src='"+src+"'");
-	            out.println("<b>Title:</b> " + title + "<br>");
-	            out.println("<b>Price:</b> " + price + "<br>");
-	            out.println("</li>");
+				
+				htmlBuilder.append("<div class='col-md-4'>");
+					htmlBuilder.append("<div class='card'>");
+						htmlBuilder.append("<img src='").append(src).append("' class='card-img-top' alt='Book Image'>");
+					htmlBuilder.append("<div class='card-body'>");
+						htmlBuilder.append("<h5 class='card-title'>").append(title).append("</h5>");
+						htmlBuilder.append("<p class='card-text'>").append(price).append("</p>");
+						htmlBuilder.append("</div>");
+				htmlBuilder.append("</div>");
+				htmlBuilder.append("</div>");
 			}
+
+			request.setAttribute("searchResults", htmlBuilder.toString());
+
+			// Forward the request to index.jsp
+			request.getRequestDispatcher("/pages/index.jsp").forward(request, response);
 
 			// Step 7: Close connection
 			conn.close();

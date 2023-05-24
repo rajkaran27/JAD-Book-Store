@@ -19,7 +19,7 @@
 </head>
 <body>
 
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
 		<div class="container-fluid">
 			<img src="../assets/fulllogo.png" class="logo-img">
 			<button class="navbar-toggler" type="button"
@@ -31,13 +31,13 @@
 			<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" href="#">Home</a></li>
+						aria-current="page" href="index.jsp">Home</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">Link</a></li>
 					
 					</li>
 				</ul>
 				<form class="d-flex">
-					<button class="btn btn-outline-primary me-2" type="button">Login</button>
+					<button class="btn btn-outline-primary me-2" type="button" onClick="window.location.href='login.jsp'">Login</button>
 				</form>
 			</div>
 		</div>
