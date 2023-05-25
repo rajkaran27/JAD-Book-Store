@@ -14,24 +14,14 @@
 <link rel="stylesheet" type="text/css" href="../styles/headerFooter.css">
 </head>
 <body>
-	<footer class="container p-4 rounded mt-5">
-		<div class="d-lg-flex justify-content-between">
-			<div>
-				<span><img id="smallLogo" src="../assets/logo.png" alt="our logo"></span>
-			</div>
-			<div class="copyright">
-				<p>
-					Developed by Pranjal and Rajkaran</a>
-				</p>
-			</div>
-			<div>
-				<ul class="d-flex gap-3 list-unstyled">
-					<li><a href="#"><i class="bi bi-facebook"></i></a></li>
-					<li><a href="#"><i class="bi bi-twitter"></i></a></li>
-					<li><a href="#"><i class="bi bi-instagram"></i></a></li>
-				</ul>
-			</div>
+	<footer class="text-center text-black fixed-bottom">
+
+		<div class="container p-4"></div>
+
+		<div class="text-center p-3">
+			<p>Managed by M.B.</p>
 		</div>
+
 	</footer>
 
 	<script
