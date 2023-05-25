@@ -36,14 +36,6 @@
 						<button class="btn btn-primary btn-lg" type="submit">Search</button>
 					</div>
 				</form>
-				<%-- <form action="<%=request.getContextPath()%>/SearchServlet"
-					method="GET" class="input-group">
-					<input type="text" class="form-control form-control-lg"
-						placeholder="Search by author or title" name="search">
-					<div class="input-group-append">
-						<button class="btn btn-primary btn-lg" type="submit">Search</button>
-					</div>
-				</form> --%>
 			</div>
 		</div>
 	</div>

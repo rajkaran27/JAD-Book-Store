@@ -32,9 +32,7 @@
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 					<li class="nav-item"><a class="nav-link active"
 						aria-current="page" href="index.jsp">Home</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Link</a></li>
-					
-					</li>
+					<li class="nav-item"><a class="nav-link" href="category.jsp">Category</a></li>
 				</ul>
 				<form class="d-flex">
 					<button class="btn btn-outline-primary me-2" type="button" onClick="window.location.href='login.jsp'">Login</button>
