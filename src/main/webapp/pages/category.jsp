@@ -6,6 +6,22 @@
 <meta charset="ISO-8859-1">
 <title>Kitty Reads Category</title>
 <link rel="stylesheet" type="text/css" href="../styles/index.css">
+<style>
+.category-box {
+	width: 200px;
+	height: 200px;
+	border: 1px solid black;
+	margin: 10px;
+	padding: 20px;
+	text-align: center;
+	display: inline-block;
+}
+
+.category-title {
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+</style>
 </head>
 <body>
 	<%@ include file="header.jsp"%>
@@ -23,7 +39,7 @@
 		<img src="../assets/fulllogo.png" alt="Logo" class="img-fluid">
 	</div>
 
-	<div class="container mt-4">
+	<!--	<div class="container mt-4">
 		<div class="row justify-content-center">
 			<div class="col-12 col-md-6">
 				<form action="searchcat.jsp" method="GET" class="input-group">
@@ -38,6 +54,32 @@
 						<button class="btn btn-primary btn-lg" type="submit">Search</button>
 					</div>
 				</form>
+			</div>
+		</div>
+	</div> -->
+
+	<div class="container mt-4">
+		<div class="row justify-content-center">
+			<div class="col-12">
+				<div class="category-box">
+					<a href="searchcat.jsp?category=romance">
+						<div class="category-title">Romance</div> <img
+						src="../assets/romance.jpg" alt="Romance" width="150" height="150">
+					</a>
+				</div>
+				<div class="category-box">
+					<a href="searchcat.jsp?category=fantasy">
+						<div class="category-title">Fantasy</div> <img
+						src="../assets/fantasy.jpg" alt="Fantasy" width="150" height="150">
+					</a>
+				</div>
+				<div class="category-box">
+					<a href="searchcat.jsp?category=mystery">
+						<div class="category-title">Mystery</div> <img
+						src="../assets/mystery.jpg" alt="Mystery" width="150" height="150">
+					</a>
+				</div>
+				<!-- Add more category boxes as needed -->
 			</div>
 		</div>
 	</div>
