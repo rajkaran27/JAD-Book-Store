@@ -47,11 +47,11 @@ public class LoginServlet extends HttpServlet {
 		Integer id = 0;
 
 		try {
-			// Step1: Load JDBC Driver â TO BE OMITTED for newer drivers
-			Class.forName("com.mysql.jdbc.Driver");
+		    // Step 1: Load JDBC Driver
+		    Class.forName("com.mysql.cj.jdbc.Driver");
 
-			// Step 2: Define Connection URL
-			String connURL = "jdbc:mysql://localhost/bookstore?user=root&password=pjraj12!&serverTimezone=UTC";
+		    // Step 2: Define Connection URL
+		    String connURL = "jdbc:mysql://localhost/bookstore?user=root&password=pjraj12!&serverTimezone=UTC";
 
 			// Step 3: Establish connection to URL
 			Connection conn = DriverManager.getConnection(connURL);

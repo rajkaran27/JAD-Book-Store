@@ -46,7 +46,7 @@
 					<a class="nav-link" href="#" id="userCart">Cart</a>
 					<form class="d-flex">
 						<button class="btn btn-outline-primary me-2" type="button"
-							onClick="window.location.href='logout.jsp'">Logout</button>
+							onClick="window.location.href='logoutFunction.jsp'">Logout</button>
 					</form>
 				</div>
 				<%
@@ -56,7 +56,7 @@
 					<a class="nav-link" href="#">edit</a>
 					<form class="d-flex">
 						<button class="btn btn-outline-primary me-2" type="button"
-							onClick="window.location.href='logout.jsp'">Logout</button>
+							onClick="window.location.href='logoutFunction.jsp'">Logout</button>
 					</form>
 				</div>
 				<%
@@ -66,7 +66,7 @@
 					<a class="nav-link" href="#">edit</a>
 					<form class="d-flex">
 						<button class="btn btn-outline-primary me-2" type="button"
-							onClick="window.location.href='logout.jsp'">Logout</button>
+							onClick="window.location.href='logoutFunction.jsp'">Logout</button>
 					</form>
 				</div>
 				<%
