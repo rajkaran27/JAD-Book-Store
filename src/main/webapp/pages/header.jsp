@@ -139,17 +139,7 @@
 					if (userRole.equals("member")) {
 				%>
 				<div class="d-flex">
-					<a class="nav-link" href="#" id="userCart">Cart</a>
-					<form class="d-flex">
-						<button class="btn btn-outline-primary me-2" type="button"
-							onClick="window.location.href='logoutFunction.jsp'">Logout</button>
-					</form>
-				</div>
-				<%
-				} else if (userRole.equals("admin")) {
-				%>
-				<div class="d-flex">
-					<a class="nav-link" href="#">edit</a>
+					<a class="nav-link" href="viewCart.jsp" id="userCart">Cart</a>
 					<form class="d-flex">
 						<button class="btn btn-outline-primary me-2" type="button"
 							onClick="window.location.href='logoutFunction.jsp'">Logout</button>

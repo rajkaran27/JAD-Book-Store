@@ -1,26 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Login</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-	crossorigin="anonymous">
+<title>Admin Login</title>
 </head>
 <body>
 	<%@ include file="header.jsp"%>
-
+	
 	<%
 	// to check if users keyed in wrong password/username
 	String message = request.getParameter("errCode");
 	%>
-
+	
+	
 	<section class="h-100 gradient-form" style="background-color: #eee;">
 		<div class="container py-5 h-100">
 			<div
@@ -72,11 +66,9 @@
 											<button type="button" class="btn btn-outline-danger"
 												onClick="window.location.href='register.jsp'">Create
 												new</button>
-
-										</div>
-										<div class="container">
 											<a href="adminLogin.jsp">Admin Login</a>
 										</div>
+
 									</form>
 
 								</div>
@@ -84,9 +76,7 @@
 							<div class="col-lg-6 d-flex align-items-center gradient-custom-2">
 								<div class="text-black px-3 py-4 p-md-5 mx-md-4">
 									<!-- from chatgpt -->
-									<img
-										src="${pageContext.request.contextPath}/assets/KittyRead.png"
-										alt="Kitten Reading">
+									<img src="${pageContext.request.contextPath}/assets/KittyRead.png" alt="Kitten Reading">
 									<!-- <h4 class="mb-4">We are more than just a company</h4>
 									<p class="small mb-0">Lorem ipsum dolor sit amet,
 										consectetur adipisicing elit, sed do eiusmod tempor incididunt
@@ -101,9 +91,8 @@
 			</div>
 		</div>
 	</section>
-
-
-
+	
 	<%@ include file="footer.jsp"%>
+	
 </body>
 </html>

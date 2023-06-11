@@ -18,13 +18,19 @@ if (userRole != null) {
 		session.setAttribute("book", bookIdList);
 	}
 	
+	// add same book checking
+	
+	
 	bookIdList.add(book_id);
 	
-	for(int i=0;i<bookIdList.size();i++){
-		System.out.print(bookIdList.get(i));
-	}
+	/* for(int i=0;i<bookIdList.size();i++){
+		if(bookIdList.get(i) == book_id){
+			
+		}
+	} */
 	
-	response.sendRedirect("bookDetails.jsp?statusCode=success");
+	session.setAttribute("bookList",bookIdList);
+	response.sendRedirect("viewCart.jsp");
 	
 	
 } else {

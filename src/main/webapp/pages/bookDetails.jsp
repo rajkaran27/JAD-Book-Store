@@ -82,12 +82,21 @@
 			</div>
 			<div class="col-md-6">
 				<h1><%=title%></h1>
-				<h3><%=category%></h3>
-				<p><%=desc%></p>
-				<p><%=author%></p>
-				<p><%=pubDate%></p>
-				<p><%=ISBN%></p>
-				<p><%=publisher%></p>
+				<p>
+					By:
+					<%=author%></p>
+				<p>
+					<%=desc%></p>
+				<div class="container">
+					
+					<h4>Book Details:</h4>
+					<p>ISBN: <%=ISBN%></p>
+					<p>Publisher: <%=publisher%></p>
+					<p>Publication Date: <%=pubDate%></p>
+					<p>Category: <%=category%></p>
+					
+				</div>
+
 			</div>
 			<div class="col-md-2">
 				<p>
@@ -104,8 +113,8 @@
 
 
 	<div class="container">
-		<h1>You may like:</h1>
-
+		<!-- <h1>You may like:</h1>
+ -->
 	</div>
 
 
