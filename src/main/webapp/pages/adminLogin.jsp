@@ -30,10 +30,10 @@
 										<!-- <img
 											src="../assets/logo.png"
 											style="width: 180px;" alt="logo"> -->
-										<h4 class="mt-1 mb-5 pb-1">Log in</h4>
+										<h4 class="mt-1 mb-5 pb-1">Admin Log in</h4>
 									</div>
 
-									<form action="<%=request.getContextPath()%>/LoginServlet"
+									<form action="<%=request.getContextPath()%>/AdminLoginServlet"
 										method="GET">
 										<div class="form-outline mb-4">
 											<label class="form-label" for="form2Example11">Username</label>
@@ -58,15 +58,6 @@
 											<button
 												class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3"
 												type="submit">Log in</button>
-										</div>
-
-										<div
-											class="d-flex align-items-center justify-content-center pb-4">
-											<p class="mb-0 me-2">Don't have an account?</p>
-											<button type="button" class="btn btn-outline-danger"
-												onClick="window.location.href='register.jsp'">Create
-												new</button>
-											<a href="adminLogin.jsp">Admin Login</a>
 										</div>
 
 									</form>

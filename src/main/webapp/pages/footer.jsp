@@ -20,6 +20,7 @@
 
 		<div class="text-center p-3">
 			<p>Managed by M.B.</p>
+			<a href="adminLogin.jsp">Admin Login</a>
 		</div>
 
 	</footer>

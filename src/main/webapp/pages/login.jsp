@@ -74,9 +74,6 @@
 												new</button>
 
 										</div>
-										<div class="container">
-											<a href="adminLogin.jsp">Admin Login</a>
-										</div>
 									</form>
 
 								</div>
