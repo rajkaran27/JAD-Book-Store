@@ -64,12 +64,14 @@
 </style>
 </head>
 <body>
+
 	<%
 	String userRole = (String) session.getAttribute("sessUserRole");
+	String loginStatus = (String) session.getAttribute("loginStatus");
 	%>
 
 	<header>
-		<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+		<nav class="navbar navbar-expand-lg navbar-light bg-white">
 			<div class="container-fluid">
 				<button class="navbar-toggler" type="button"
 					data-mdb-toggle="collapse" data-mdb-target="#navbarExample01"

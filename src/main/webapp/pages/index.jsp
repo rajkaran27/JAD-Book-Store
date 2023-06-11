@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+
 <!DOCTYPE html>
 <html>
 
@@ -25,7 +26,6 @@
 	<div class="container text-center mt-3">
 		<img src="${pageContext.request.contextPath}/assets/fulllogo.png"
 			alt="Kitty Reads" class="img-fluid">
-
 	</div>
 
 	<div class="container mt-4">

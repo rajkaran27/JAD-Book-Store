@@ -89,6 +89,8 @@ public class LoginServlet extends HttpServlet {
 			// Create Role
 			session.setAttribute("sessUserRole", "member");
 			session.setAttribute("sessUserID", id);
+			session.setAttribute("loginStatus", "success");
+			session.setMaxInactiveInterval(10);
 			// Redirect to displayMember.jsp with parameters
 			response.sendRedirect(path + "//index.jsp");
 		} else {
