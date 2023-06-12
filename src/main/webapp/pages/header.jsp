@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ page import="java.sql.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,6 +20,9 @@
 /* category navbar */
 .navbar-dropdown {
 	display: none; /* Hide the dropdown by default */
+	position: absolute; /* Position the dropdown absolutely */
+	background-color: #e0e0e0; /* Add white background color */
+	z-index: 1;
 }
 
 .navbar-item:hover .navbar-dropdown {
@@ -57,10 +61,6 @@
 }
 
 /* change navbar dropdown color */
-.navbar-dropdown {
-	display: none;
-	background-color: #e0e0e0; /* Add white background color */
-}
 </style>
 </head>
 <body>
@@ -68,6 +68,41 @@
 	<%
 	String userRole = (String) session.getAttribute("sessUserRole");
 	String loginStatus = (String) session.getAttribute("loginStatus");
+	String genre = "";
+
+	try {
+		// Step 1: Load JDBC Driver
+		Class.forName("com.mysql.cj.jdbc.Driver");
+
+		// Step 2: Define Connection URL
+		String connURL = "jdbc:mysql://localhost/bookstore?user=root&password=pjraj12!&serverTimezone=UTC";
+
+		// Step 3: Establish connection to URL
+		Connection conn = DriverManager.getConnection(connURL);
+
+		// Step 4: Create PreparedStatement object
+
+		String sqlStr = "SELECT * FROM bookstore.categories;";
+
+		PreparedStatement pstmt = conn.prepareStatement(sqlStr);
+
+		// Step 5: Execute SQL query
+		ResultSet rs = pstmt.executeQuery();
+
+		// Step 6: Process Result
+		while (rs.next()) {
+			String categoryName = rs.getString("category_name");
+			genre += "<a href=\"/categories/m/" + categoryName.toLowerCase() + "\">" + "<span>" + categoryName
+			+ "</span></a>";
+
+		}
+
+		// Close connection
+		conn.close();
+	} catch (Exception e) {
+		e.printStackTrace();
+		out.println("Error: " + e);
+	}
 	%>
 
 	<header>
@@ -84,52 +119,12 @@
 						<li class="nav-item active"><a class="nav-link"
 							aria-current="page" href="index.jsp">Home</a></li>
 
-						<!-- Fiction -->
+						<!-- Categories -->
 						<li class="navbar-item has-dropdown is-hoverable"><a
-							class="nav-link" href="/categories/m/fiction">Fiction</a>
+							class="nav-link" href="category.jsp">Genre</a>
 							<div class="navbar-dropdown">
 								<div class="navbar-dropdown-list">
-									<a href="/categories/m/fiction/romance"><span>Romance</span></a>
-									<a href="/categories/m/fiction/comics-graphic-novels"><span>Comics
-											&amp; Graphic Novels</span></a> <a
-										href="/categories/m/fiction/historical-fiction"><span>Historical
-											Fiction</span></a> <a href="/categories/m/fiction/horror"><span>Horror</span></a>
-									<a href="/categories/m/fiction/literature-fiction"><span>Literature
-											&amp; Fiction</span></a> <a href="/categories/m/fiction/manga"><span>Manga</span></a>
-									<a href="/categories/m/fiction/mystery-thrillers-true-crime"><span>Mystery,
-											Thrillers, &amp; Crime</span></a> <a href="/categories/m/fiction/poetry"><span>Poetry</span></a>
-									<a href="/categories/m/fiction/science-fiction"><span>Science
-											Fiction</span></a> <a href="/categories/m/fiction/fantasy"><span>Fantasy</span></a>
-									<a href="/categories/m/fiction/lgbtq-fiction"><span>LGBTQ+
-											Fiction</span></a> <a href="/categories/m/fiction/spanish-language"><span>En
-											Español</span></a>
-								</div>
-							</div></li>
-
-						<!-- Non Fiction -->
-						<li class="navbar-item has-dropdown is-hoverable"><a class="nav-link"
-							href="/categories/m/nonfiction">Nonfiction</a>
-							<div class="navbar-dropdown">
-								<div class="navbar-dropdown-list">
-									<a href="/categories/m/nonfiction/arts-photography"><span>Arts
-											&amp; Photography</span></a> <a
-										href="/categories/m/nonfiction/biography-memoir"><span>Biography
-											&amp; Memoir</span></a> <a
-										href="/categories/m/nonfiction/business-investing"><span>Business
-											&amp; Investing </span></a> <a
-										href="/categories/m/nonfiction/cooking-wine"><span>Cooking
-											&amp; Wine</span></a> <a href="/categories/m/nonfiction/history"><span>History</span></a>
-
-									<a href="/categories/m/nonfiction/humor-games"><span>Humor
-											&amp; Games</span></a> <a
-										href="/categories/m/nonfiction/science-technology"><span>Science
-											&amp; Technology</span></a> <a
-										href="/categories/m/nonfiction/self-development-hobbies"><span>Self
-											Development &amp; Hobbies</span></a> <a
-										href="/categories/m/nonfiction/spirituality-and-religion"><span>Spirituality
-											&amp; Religion</span></a> <a href="/categories/m/nonfiction/travel"><span>Travel</span></a>
-									<a href="/categories/m/nonfiction/lgbtq-nonfiction"><span>LGBTQ+
-											Nonfiction</span></a>
+									<%=genre%>
 								</div>
 							</div></li>
 					</ul>
