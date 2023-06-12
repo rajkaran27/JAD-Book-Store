@@ -7,20 +7,6 @@
 <title>Kitty Reads Category</title>
 <link rel="stylesheet" type="text/css" href="../styles/index.css">
 <style>
-.category-box {
-	width: 200px;
-	height: 200px;
-	border: 1px solid black;
-	margin: 10px;
-	padding: 20px;
-	text-align: center;
-	display: inline-block;
-}
-
-.category-title {
-	font-weight: bold;
-	margin-bottom: 10px;
-}
 </style>
 </head>
 <body>
@@ -28,60 +14,68 @@
 	<%@page import="java.sql.*"%>
 
 	<%
-	// Retrieve search results from session
-	String searchResults = (String) session.getAttribute("searchResults");
+	try {
+		StringBuilder htmlBuilder = new StringBuilder();
 
-	// Clear the search results from the session
-	session.removeAttribute("searchResults");
+		// Step 1: Load JDBC Driver
+		Class.forName("com.mysql.cj.jdbc.Driver");
+
+		// Step 2: Define Connection URL
+		String connURL = "jdbc:mysql://localhost/bookstore?user=root&password=pjraj12!&serverTimezone=UTC";
+
+		// Step 3: Establish connection to URL
+		Connection conn = DriverManager.getConnection(connURL);
+
+		// Step 4: Create PreparedStatement object
+		String sqlStr = "SELECT * FROM bookstore.categories;";
+		PreparedStatement pstmt = conn.prepareStatement(sqlStr);
+
+		// Step 5: Execute SQL query
+		ResultSet rs = pstmt.executeQuery();
+
+		// Step 6: Process Result
+		while (rs.next()) {
+			String category = rs.getString("category_name");
+			String src = rs.getString("image");
+			int catId = rs.getInt("category_id");
+
+			htmlBuilder.append("<div class='col-md-4'>");
+			htmlBuilder.append("<div class='card' style='border-radius: 15px;'>");
+			htmlBuilder.append(
+			"<div class='bg-image hover-overlay ripple ripple-surface ripple-surface-light' data-mdb-ripple-color='light'>");
+			htmlBuilder.append("<img src='").append(src).append(
+			"' style='border-top-left-radius: 15px; border-top-right-radius: 15px;' class='img-fluid' alt='Book Image' />");
+			htmlBuilder.append("<a href='#!'>");
+			htmlBuilder.append("<div class='mask'></div>");
+			htmlBuilder.append("</a>");
+			htmlBuilder.append("</div>");
+			htmlBuilder.append("<div class='card-body pb-0'>");
+			htmlBuilder.append("<div class='d-flex justify-content-between'>");
+			htmlBuilder.append("<div>");
+			htmlBuilder.append("<h5 class='card-title'>").append(category).append("</h5>");
+			htmlBuilder.append("</div>");
+			htmlBuilder.append("</div>");
+			htmlBuilder.append("</div>");
+			htmlBuilder.append("<div class='card-body'>");
+			htmlBuilder.append("<div class='d-flex justify-content-between align-items-end pb-2 mb-1'>");
+			htmlBuilder.append("<a href='#!' class='text-dark fw-bold'></a>");
+			htmlBuilder.append("<a href='bookDetails.jsp?bookId=").append(catId)
+			.append("' class='btn btn-primary'>Details</a>");
+			htmlBuilder.append("</div>");
+			htmlBuilder.append("</div>");
+			htmlBuilder.append("</div>");
+			htmlBuilder.append("</div>");
+		}
+
+		session.setAttribute("searchResults", htmlBuilder.toString());
+
+		// Close connection
+		conn.close();
+	} catch (Exception e) {
+		e.printStackTrace();
+		out.println("Error: " + e);
+	}
 	%>
 
-	<div class="container text-center mt-3">
-		<img src="../assets/fulllogo.png" alt="Logo" class="img-fluid">
-	</div>
-
-	<!--	<div class="container mt-4">
-		<div class="row justify-content-center">
-			<div class="col-12 col-md-6">
-				<form action="searchcat.jsp" method="GET" class="input-group">
-					<select class="form-control form-control-lg"
-						placeholder="Search by author or title" name="search">
-						<option value="" selected disabled>Search by author or
-							title</option>
-						<option value="author">Search by author</option>
-						<option value="title">Search by title</option>
-					</select>
-					<div class="input-group-append">
-						<button class="btn btn-primary btn-lg" type="submit">Search</button>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div> -->
-
-	<div class="container mt-4">
-		<div class="row justify-content-center">
-			<div class="col-12">
-				<div class="category-box">
-					<a href="searchcat.jsp?category=romance">
-						<div class="category-title">Romance</div> <img
-						src="../assets/romance.jpg" alt="Romance" width="150" height="150">
-					</a>
-				</div>
-				<div class="category-box">
-					<a href="searchcat.jsp?category=fantasy">
-						<div class="category-title">Fantasy</div> <img
-						src="../assets/fantasy.jpg" alt="Fantasy" width="150" height="150">
-					</a>
-				</div>
-				<div class="category-box">
-					<a href="searchcat.jsp?category=mystery">
-						<div class="category-title">Mystery</div> <img
-						src="../assets/mystery.jpg" alt="Mystery" width="150" height="150">
-					</a>
-				</div>
-				<!-- Add more category boxes as needed -->
-			</div>
-		</div>
-	</div>
 </body>
 </html>
