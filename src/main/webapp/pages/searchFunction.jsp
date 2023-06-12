@@ -65,8 +65,12 @@ try {
 
 		
 	}
-
+	
+	System.out.print(request.getContextPath());
+	
 	session.setAttribute("searchResults", htmlBuilder.toString());
+	response.sendRedirect("index.jsp?searchResults=true");
+
 
 	// Close connection
 	conn.close();
@@ -75,6 +79,4 @@ try {
 	out.println("Error: " + e);
 }
 
-// Redirect to index.jsp with search results as query parameter
-response.sendRedirect("index.jsp?searchResults=true");
 %>
