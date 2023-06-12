@@ -38,10 +38,22 @@ public class AddBookServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String path = request.getContextPath() + "/pages";
-
+		
+		String author = request.getParameter("author");
+		String category = request.getParameter("category");
+		String publisher = request.getParameter("publisher");
+		String src = request.getParameter("src");
+		String title = request.getParameter("title");
+		String desc = request.getParameter("desc");
+		String ISBN = request.getParameter("isbn");
+		String pages = request.getParameter("pages");
+		String price = request.getParameter("price");
+		String pubDate = request.getParameter("pubDate");
+		String rating = request.getParameter("rating");
+		String quantity = request.getParameter("quantity");
+		
 		PrintWriter out = response.getWriter();
 		HttpSession session = request.getSession();
-
 
 		try {
 
@@ -58,44 +70,32 @@ public class AddBookServlet extends HttpServlet {
 			Statement stmt = conn.createStatement();
 
 			// Step 5: Execute SQL Command
-			String sqlStr = "SELECT * FROM admin WHERE username=? AND password=?";
+			String sqlStr = "INSERT INTO books(category_id,isbn,title,quantity,price,author_id,publisher_id,image,description,rating,publication_date) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 			PreparedStatement pstmt = conn.prepareStatement(sqlStr);
 
 			// Set parameter values for placeholders
-			pstmt.setString(1, user);
-			pstmt.setString(2, pwd);
+			pstmt.setString(1, category);		
+			pstmt.setString(2, ISBN);
+			pstmt.setString(3, title);
+			pstmt.setString(4, quantity);
+			pstmt.setString(5, price);
+			pstmt.setString(6, author);
+			pstmt.setString(7, publisher);
+			pstmt.setString(8, src);
+			pstmt.setString(9, desc);
+			pstmt.setString(10, rating);
+			pstmt.setString(11, pubDate);
 
 			// Execute SQL query
-			ResultSet rs = pstmt.executeQuery();
+            int rowsAffected = pstmt.executeUpdate();
 
-			// Step 6: Process Result
-			while (rs.next()) {
-
-				id = rs.getInt("admin_id");
-				password = rs.getString("password");
-				name = rs.getString("username");
-
-			}
-
+            
 			// Step 7: Close connection
 			conn.close();
 		} catch (Exception e) {
 			out.println("Error :" + e);
 		}
 
-		if (name.equalsIgnoreCase(user) && password.equals(pwd)) { // Create Role
-			session.setAttribute("sessUserRole", "owner");
-			session.setAttribute("sessUserID", id);
-			session.setAttribute("loginStatus", "success");
-			session.setMaxInactiveInterval(10); // Redirect to
-			// displayMember.jsp with parameters
-			response.sendRedirect(path + "//index.jsp");
-		} else {
-
-			// for invalid credentials
-			response.sendRedirect(path + "//adminLogin.jsp?errCode=invalidLogin");
-
-		}
 	}
 
 }

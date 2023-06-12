@@ -9,22 +9,41 @@
 </head>
 <body>
 	<%@ include file="header.jsp"%>
+	<%
+	/* 	if(userRole != null){
+			if(userRole.equals("owner")){
+		out.print("good")
+			}
+		}else{
+			response.sendRedirect("login.jsp");
+		}
+	 */
+	%>
+
+
 	<div class="container">
 		<h1>Admin Page</h1>
 
 		<div class="card my-4">
 			<div class="card-header">Add Book</div>
 			<div class="card-body">
-				<form action="AddBookServlet" method="POST">
+				<form action="<%=request.getContextPath()%>/AddBookServlet"
+					method="POST">
 					<div class="mb-3">
 						<label for="imageLink" class="form-label">Image Link</label> <input
-							type="text" class="form-control" id="imageLink" name="imageLink"
+							type="text" class="form-control" id="imageLink" name="src"
 							placeholder="Enter image link">
 					</div>
 
 					<div class="mb-3">
+						<label for="title" class="form-label">Title of Book</label> <input
+							class="form-control" id="description" name="title" rows="3"
+							placeholder="Enter title" type="text"></input>
+					</div>
+
+					<div class="mb-3">
 						<label for="description" class="form-label">Description</label>
-						<textarea class="form-control" id="description" name="description"
+						<textarea class="form-control" id="description" name="desc"
 							rows="3" placeholder="Enter description"></textarea>
 					</div>
 
@@ -56,15 +75,55 @@
 
 					<div class="mb-3">
 						<label for="publicationDate" class="form-label">Publication
-							Date</label> <input type="date" class="form-control" id="publicationDate"
-							name="publicationDate">
+							Date</label> <input type="date" class="form-control" id="pubDate"
+							name="pubDate">
+					</div>
+
+					<div class="mb-3">
+						<label for="pages" class="form-label">Number of Pages</label> <input
+							type="number" class="form-control" id="pages" name="pages"
+							placeholder="Enter number of pages">
 					</div>
 
 					<div class="mb-3">
 						<label for="category" class="form-label">Category</label> <select
 							class="form-select" id="category" name="category">
 							<option value="" selected disabled>Select category</option>
-							<!-- Add dynamically generated category options here -->
+							<%
+							try {
+
+								// Step 1: Load JDBC Driver
+								Class.forName("com.mysql.cj.jdbc.Driver");
+
+								// Step 2: Define Connection URL
+								String connURL = "jdbc:mysql://localhost/bookstore?user=root&password=pjraj12!&serverTimezone=UTC";
+
+								// Step 3: Establish connection to URL
+								Connection conn = DriverManager.getConnection(connURL);
+
+								// Step 4: Create Statement object
+								Statement stmt = conn.createStatement();
+
+								// Step 5: Execute SQL Command
+								String sqlStr = "SELECT * from categories";
+								ResultSet rs = stmt.executeQuery(sqlStr);
+
+								while (rs.next()) {
+								int category_id =rs.getInt("category_id");
+								String category = rs.getString("category_name");
+									
+									
+							%>
+								<option value="<%=category_id%>"><%=category%></option>
+							<%
+							}
+
+							// Step 7: Close connection
+							conn.close();
+							} catch (Exception e) {
+							out.println("Error :" + e);
+							}
+							%>
 						</select>
 					</div>
 
@@ -72,7 +131,41 @@
 						<label for="author" class="form-label">Author</label> <select
 							class="form-select" id="author" name="author">
 							<option value="" selected disabled>Select author</option>
-							<!-- Add dynamically generated author options here -->
+														<%
+							try {
+
+								// Step 1: Load JDBC Driver
+								Class.forName("com.mysql.cj.jdbc.Driver");
+
+								// Step 2: Define Connection URL
+								String connURL = "jdbc:mysql://localhost/bookstore?user=root&password=pjraj12!&serverTimezone=UTC";
+
+								// Step 3: Establish connection to URL
+								Connection conn = DriverManager.getConnection(connURL);
+
+								// Step 4: Create Statement object
+								Statement stmt = conn.createStatement();
+
+								// Step 5: Execute SQL Command
+								String sqlStr = "SELECT * from authors";
+								ResultSet rs = stmt.executeQuery(sqlStr);
+
+								while (rs.next()) {
+								int author_id =rs.getInt("author_id");
+								String author = rs.getString("author_name");
+									
+									
+							%>
+								<option value="<%=author_id%>"><%=author%></option>
+							<%
+							}
+
+							// Step 7: Close connection
+							conn.close();
+							} catch (Exception e) {
+							out.println("Error :" + e);
+							}
+							%>
 						</select>
 					</div>
 
@@ -80,7 +173,41 @@
 						<label for="publisher" class="form-label">Publisher</label> <select
 							class="form-select" id="publisher" name="publisher">
 							<option value="" selected disabled>Select publisher</option>
-							<!-- Add dynamically generated publisher options here -->
+														<%
+							try {
+
+								// Step 1: Load JDBC Driver
+								Class.forName("com.mysql.cj.jdbc.Driver");
+
+								// Step 2: Define Connection URL
+								String connURL = "jdbc:mysql://localhost/bookstore?user=root&password=pjraj12!&serverTimezone=UTC";
+
+								// Step 3: Establish connection to URL
+								Connection conn = DriverManager.getConnection(connURL);
+
+								// Step 4: Create Statement object
+								Statement stmt = conn.createStatement();
+
+								// Step 5: Execute SQL Command
+								String sqlStr = "SELECT * from publishers";
+								ResultSet rs = stmt.executeQuery(sqlStr);
+
+								while (rs.next()) {
+								int publisher_id =rs.getInt("publisher_id");
+								String publisher = rs.getString("publisher_name");
+									
+									
+							%>
+								<option value="<%=publisher_id%>"><%=publisher%></option>
+							<%
+							}
+
+							// Step 7: Close connection
+							conn.close();
+							} catch (Exception e) {
+							out.println("Error :" + e);
+							}
+							%>
 						</select>
 					</div>
 
@@ -102,9 +229,6 @@
 					</tr>
 				</thead>
 				<tbody>
-					<!-- Loop through each book record from the database and display them in rows -->
-					<!-- Each row should include the book details and buttons for updating and deleting -->
-					<!-- Example row (replace with dynamic data from the database): -->
 					<%
 					try {
 						// Step 1: Load JDBC Driver
@@ -120,7 +244,7 @@
 						Statement stmt = conn.createStatement();
 
 						// Step 5: Execute SQL Command
-						String sqlStr = "SELECT * FROM books;";
+						String sqlStr = "SELECT books.title,books.price,authors.name FROM books JOIN authors ON authors.author_id=books.author_id;";
 						ResultSet rs = stmt.executeQuery(sqlStr);
 
 						// Step 6: Process Result
@@ -129,10 +253,9 @@
 							double price = rs.getDouble("price");
 					%>
 					<tr>
-						<!-- <td><img src="book-image.jpg" alt="Book Image" width="50"></td> -->
-						<td><%=title %></td>
+						<td><%=title%></td>
 						<td>Author Name</td>
-						<td><%=price %></td>
+						<td><%=price%></td>
 						<td>
 							<!-- Button for updating the book -->
 							<button class="btn btn-primary btn-sm update-button">Update</button>
