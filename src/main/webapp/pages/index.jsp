@@ -6,8 +6,9 @@
 
 <head>
 <meta charset="ISO-8859-1">
-<title>Kitty Reads</title>
-<link rel="stylesheet" type="text/css" href="../styles/index.css">
+<title>Paws & Paperback</title>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/index.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/main.css">
 
 </head>
 
@@ -24,8 +25,8 @@
 	%>
 
 	<div class="container text-center mt-3">
-		<img src="${pageContext.request.contextPath}/assets/fulllogo.png"
-			alt="Kitty Reads" class="img-fluid">
+		<img src="${pageContext.request.contextPath}/assets/brandLogo.png"
+			alt="Paws" class="img-fluid">
 	</div>
 
 	<div class="container mt-4">

@@ -52,10 +52,16 @@
 											<input type="password" id="form2Example22"
 												class="form-control" name="password" />
 											<%
-											if (message != null && message.equals("invalidLogin")) {
+											if (message != null) {
+												if (message.equals("invalidLogin")) {
 											%>
 											<p>Wrong username or password. Try again.</p>
 											<%
+											} else if (message.equals("accessDenied")) {
+											%>
+											<p>Access Denied.</p>
+											<%
+											}
 											}
 											%>
 										</div>

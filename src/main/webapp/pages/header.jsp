@@ -12,6 +12,8 @@
 	rel="stylesheet"
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/headerFooter.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/main.css">
 <style>
 .logo-img {
 	max-width: 250px; /* Set the maximum width for the logo image */
@@ -94,7 +96,6 @@
 			String categoryName = rs.getString("category_name");
 			genre += "<a href=\"/categories/m/" + categoryName.toLowerCase() + "\">" + "<span>" + categoryName
 			+ "</span></a>";
-
 		}
 
 		// Close connection
@@ -143,8 +144,10 @@
 				<%
 				} else if (userRole.equals("owner")) {
 				%>
+				
 				<div class="d-flex">
-					<a class="nav-link" href="#">edit</a>
+					<a class="btn" href="#">Member Management</a>
+					<a class="btn" href="adminActions.jsp">BookShelf</a>
 					<form class="d-flex">
 						<button class="btn btn-outline-primary me-2" type="button"
 							onClick="window.location.href='logoutFunction.jsp'">Logout</button>

@@ -10,14 +10,8 @@
 <body>
 	<%@ include file="header.jsp"%>
 	<%
-	/* 	if(userRole != null){
-			if(userRole.equals("owner")){
-		out.print("good")
-			}
-		}else{
-			response.sendRedirect("login.jsp");
-		}
-	 */
+	if (userRole != null) {
+		if (userRole.equals("owner")) {
 	%>
 
 
@@ -42,7 +36,7 @@
 					</div>
 
 					<div class="mb-3">
-						<label for="description" class="form-label">Description</label>
+						<label for="description" class="form-label">Description</label>s
 						<textarea class="form-control" id="description" name="desc"
 							rows="3" placeholder="Enter description"></textarea>
 					</div>
@@ -51,7 +45,7 @@
 						<div class="col">
 							<label for="price" class="form-label">Price</label> <input
 								type="number" class="form-control" id="price" name="price"
-								placeholder="Enter price">
+								placeholder="Enter price" step=".01">
 						</div>
 						<div class="col">
 							<label for="isbn" class="form-label">ISBN</label> <input
@@ -79,11 +73,6 @@
 							name="pubDate">
 					</div>
 
-					<div class="mb-3">
-						<label for="pages" class="form-label">Number of Pages</label> <input
-							type="number" class="form-control" id="pages" name="pages"
-							placeholder="Enter number of pages">
-					</div>
 
 					<div class="mb-3">
 						<label for="category" class="form-label">Category</label> <select
@@ -109,12 +98,10 @@
 								ResultSet rs = stmt.executeQuery(sqlStr);
 
 								while (rs.next()) {
-								int category_id =rs.getInt("category_id");
-								String category = rs.getString("category_name");
-									
-									
+									int category_id = rs.getInt("category_id");
+									String category = rs.getString("category_name");
 							%>
-								<option value="<%=category_id%>"><%=category%></option>
+							<option value="<%=category_id%>"><%=category%></option>
 							<%
 							}
 
@@ -131,7 +118,7 @@
 						<label for="author" class="form-label">Author</label> <select
 							class="form-select" id="author" name="author">
 							<option value="" selected disabled>Select author</option>
-														<%
+							<%
 							try {
 
 								// Step 1: Load JDBC Driver
@@ -151,12 +138,10 @@
 								ResultSet rs = stmt.executeQuery(sqlStr);
 
 								while (rs.next()) {
-								int author_id =rs.getInt("author_id");
-								String author = rs.getString("author_name");
-									
-									
+									int author_id = rs.getInt("author_id");
+									String author = rs.getString("author_name");
 							%>
-								<option value="<%=author_id%>"><%=author%></option>
+							<option value="<%=author_id%>"><%=author%></option>
 							<%
 							}
 
@@ -173,7 +158,7 @@
 						<label for="publisher" class="form-label">Publisher</label> <select
 							class="form-select" id="publisher" name="publisher">
 							<option value="" selected disabled>Select publisher</option>
-														<%
+							<%
 							try {
 
 								// Step 1: Load JDBC Driver
@@ -193,12 +178,10 @@
 								ResultSet rs = stmt.executeQuery(sqlStr);
 
 								while (rs.next()) {
-								int publisher_id =rs.getInt("publisher_id");
-								String publisher = rs.getString("publisher_name");
-									
-									
+									int publisher_id = rs.getInt("publisher_id");
+									String publisher = rs.getString("publisher_name");
 							%>
-								<option value="<%=publisher_id%>"><%=publisher%></option>
+							<option value="<%=publisher_id%>"><%=publisher%></option>
 							<%
 							}
 
@@ -216,9 +199,9 @@
 			</div>
 		</div>
 
-		<!-- Book List -->
+
 		<div>
-			<h2>Book List</h2>
+			<h2>Modify Existing Books</h2>
 			<table class="table">
 				<thead>
 					<tr>
@@ -244,23 +227,22 @@
 						Statement stmt = conn.createStatement();
 
 						// Step 5: Execute SQL Command
-						String sqlStr = "SELECT books.title,books.price,authors.name FROM books JOIN authors ON authors.author_id=books.author_id;";
+						String sqlStr = "SELECT books.title,books.price,authors.author_name FROM books JOIN authors ON authors.author_id=books.author_id;";
 						ResultSet rs = stmt.executeQuery(sqlStr);
 
 						// Step 6: Process Result
 						while (rs.next()) {
 							String title = rs.getString("title");
+							String author = rs.getString("author");
 							double price = rs.getDouble("price");
 					%>
 					<tr>
 						<td><%=title%></td>
-						<td>Author Name</td>
+						<td><%=author%></td>
 						<td><%=price%></td>
 						<td>
-							<!-- Button for updating the book -->
-							<button class="btn btn-primary btn-sm update-button">Update</button>
-							<!-- Button for deleting the book -->
-							<button class="btn btn-danger btn-sm delete-button">Delete</button>
+							<a class="btn btn-primary btn-sm update-button">Update</a>
+							<a class="btn btn-danger btn-sm delete-button" >Delete</a>
 						</td>
 					</tr>
 					<%
@@ -278,6 +260,14 @@
 	</div>
 
 	</div>
-	<%-- <%@ include file="footer.jsp"%> --%>
+
+	<%
+	}
+	} else {
+	response.sendRedirect("login.jsp?errCode=accessDenied");
+	}
+	%>
+
+	<%@ include file="footer.jsp"%>
 </body>
 </html>

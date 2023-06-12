@@ -43,10 +43,9 @@ public class AddBookServlet extends HttpServlet {
 		String category = request.getParameter("category");
 		String publisher = request.getParameter("publisher");
 		String src = request.getParameter("src");
-		String title = request.getParameter("title");
+		String title = request.getParameter("title").toUpperCase();
 		String desc = request.getParameter("desc");
 		String ISBN = request.getParameter("isbn");
-		String pages = request.getParameter("pages");
 		String price = request.getParameter("price");
 		String pubDate = request.getParameter("pubDate");
 		String rating = request.getParameter("rating");
