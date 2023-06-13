@@ -5,8 +5,36 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Kitty Reads Category</title>
-<link rel="stylesheet" type="text/css" href="../styles/index.css">
 <style>
+.category-button {
+	width: 200px;
+	height: 100px;
+	margin: 10px;
+	background-color: #144367;
+	color: white;
+	font-size: 20px;
+	border-radius: 10px;
+	display: flex;
+	text-decoration: none;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+
+.category-button:hover {
+	background-color: #ff5252;
+}
+
+.container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	margin-top: 50px;
+	align-items: center;
+	flex-wrap: wrap;
+	flex-wrap: wrap;
+}
 </style>
 </head>
 <body>
@@ -38,33 +66,11 @@
 			String category = rs.getString("category_name");
 			int catId = rs.getInt("category_id");
 
-			htmlBuilder.append("<div class='col-md-4'>");
-			htmlBuilder.append("<div class='card' style='border-radius: 15px;'>");
-			htmlBuilder.append(
-			"<div class='bg-image hover-overlay ripple ripple-surface ripple-surface-light' data-mdb-ripple-color='light'>");
-			htmlBuilder.append("<a href='#!'>");
-			htmlBuilder.append("<div class='mask'></div>");
-			htmlBuilder.append("</a>");
-			htmlBuilder.append("</div>");
-			htmlBuilder.append("<div class='card-body pb-0'>");
-			htmlBuilder.append("<div class='d-flex justify-content-between'>");
-			htmlBuilder.append("<div>");
-			htmlBuilder.append("<h5 class='card-title'>").append(category).append("</h5>");
-			htmlBuilder.append("</div>");
-			htmlBuilder.append("</div>");
-			htmlBuilder.append("</div>");
-			htmlBuilder.append("<div class='card-body'>");
-			htmlBuilder.append("<div class='d-flex justify-content-between align-items-end pb-2 mb-1'>");
-			htmlBuilder.append("<a href='#!' class='text-dark fw-bold'></a>");
-			htmlBuilder.append("<a href='catDetails.jsp?catId=").append(catId)
-			.append("' class='btn btn-primary'>Details</a>");
-			htmlBuilder.append("</div>");
-			htmlBuilder.append("</div>");
-			htmlBuilder.append("</div>");
-			htmlBuilder.append("</div>");
+			htmlBuilder.append("<a href='catDetails.jsp?catId=").append(catId).append("' class='category-button'>")
+			.append(category).append("</a>");
 		}
 
-		session.setAttribute("searchResults", htmlBuilder.toString());
+		session.setAttribute("categoryButtons", htmlBuilder.toString());
 
 		// Close connection
 		conn.close();
@@ -75,20 +81,18 @@
 	%>
 
 	<div class="container text-center mt-3">
-		<img src="${pageContext.request.contextPath}/assets/fulllogo.png"
-			alt="Kitty Reads" class="img-fluid">
+		<img src="${pageContext.request.contextPath}/assets/brandLogo.png"
+			alt="Paws" class="img-fluid">
 	</div>
 	<%
-	// Retrieve search results from session
-	String searchResults = (String) session.getAttribute("searchResults");
+	// Retrieve category buttons from session
+	String categoryButtons = (String) session.getAttribute("categoryButtons");
 
-	// Clear the search results from the session
-	session.removeAttribute("searchResults");
+	// Clear the category buttons from the session
+	session.removeAttribute("categoryButtons");
 	%>
-	<div class="container mt-5" id="bookDisplay">
-		<div class="row">
-			<%=searchResults%>
-		</div>
+	<div class="container mt-5" id="categoryDisplay">
+		<%=categoryButtons%>
 	</div>
 </body>
 </html>
