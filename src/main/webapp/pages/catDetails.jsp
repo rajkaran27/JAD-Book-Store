@@ -4,16 +4,19 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Kitty Reads Category</title>
-<link rel="stylesheet" type="text/css" href="../styles/index.css">
-<style>
-</style>
+<title>Insert title here</title>
 </head>
 <body>
 	<%@ include file="header.jsp"%>
-	<%@page import="java.sql.*"%>
-
 	<%
+	String genreName = "";
+	String catId = request.getParameter("catId");
+	int cat_id = 0;
+	if (catId != null) {
+		cat_id = Integer.parseInt(catId);
+	} else {
+		out.print("error");
+	}
 	try {
 		StringBuilder htmlBuilder = new StringBuilder();
 
@@ -26,22 +29,37 @@
 		// Step 3: Establish connection to URL
 		Connection conn = DriverManager.getConnection(connURL);
 
-		// Step 4: Create PreparedStatement object
-		String sqlStr = "SELECT * FROM bookstore.categories;";
-		PreparedStatement pstmt = conn.prepareStatement(sqlStr);
+		String genreSqlStr = "SELECT category_name FROM categories WHERE category_id = ?;";
+		PreparedStatement genrePstmt = conn.prepareStatement(genreSqlStr);
+		genrePstmt.setInt(1, cat_id);
+		ResultSet genreRs = genrePstmt.executeQuery();
 
+		//  Retrieve genre name
+		if (genreRs.next()) {
+			genreName = genreRs.getString("category_name");
+		}
+
+		// Step 4: Create PreparedStatement object
+		String sqlStr = "SELECT books.*, categories.category_id FROM books JOIN categories ON books.category_id = categories.category_id WHERE categories.category_id = ?;";
+		PreparedStatement pstmt = conn.prepareStatement(sqlStr);
+		// Set parameter values for placeholders
+		pstmt.setInt(1, cat_id);
 		// Step 5: Execute SQL query
 		ResultSet rs = pstmt.executeQuery();
 
 		// Step 6: Process Result
 		while (rs.next()) {
-			String category = rs.getString("category_name");
-			int catId = rs.getInt("category_id");
+			String title = rs.getString("title");
+			String src = rs.getString("image");
+			double price = rs.getDouble("price");
+			int bookId = rs.getInt("book_id");
 
 			htmlBuilder.append("<div class='col-md-4'>");
 			htmlBuilder.append("<div class='card' style='border-radius: 15px;'>");
 			htmlBuilder.append(
 			"<div class='bg-image hover-overlay ripple ripple-surface ripple-surface-light' data-mdb-ripple-color='light'>");
+			htmlBuilder.append("<img src='").append(src).append(
+			"' style='border-top-left-radius: 15px; border-top-right-radius: 15px;' class='img-fluid' alt='Book Image' />");
 			htmlBuilder.append("<a href='#!'>");
 			htmlBuilder.append("<div class='mask'></div>");
 			htmlBuilder.append("</a>");
@@ -49,19 +67,21 @@
 			htmlBuilder.append("<div class='card-body pb-0'>");
 			htmlBuilder.append("<div class='d-flex justify-content-between'>");
 			htmlBuilder.append("<div>");
-			htmlBuilder.append("<h5 class='card-title'>").append(category).append("</h5>");
+			htmlBuilder.append("<h5 class='card-title'>").append(title).append("</h5>");
+			htmlBuilder.append("<p class='small text-muted'>").append(price).append("</p>");
 			htmlBuilder.append("</div>");
 			htmlBuilder.append("</div>");
 			htmlBuilder.append("</div>");
 			htmlBuilder.append("<div class='card-body'>");
 			htmlBuilder.append("<div class='d-flex justify-content-between align-items-end pb-2 mb-1'>");
 			htmlBuilder.append("<a href='#!' class='text-dark fw-bold'></a>");
-			htmlBuilder.append("<a href='catDetails.jsp?catId=").append(catId)
+			htmlBuilder.append("<a href='bookDetails.jsp?bookId=").append(bookId)
 			.append("' class='btn btn-primary'>Details</a>");
 			htmlBuilder.append("</div>");
 			htmlBuilder.append("</div>");
 			htmlBuilder.append("</div>");
 			htmlBuilder.append("</div>");
+
 		}
 
 		session.setAttribute("searchResults", htmlBuilder.toString());
@@ -73,11 +93,6 @@
 		out.println("Error: " + e);
 	}
 	%>
-
-	<div class="container text-center mt-3">
-		<img src="${pageContext.request.contextPath}/assets/fulllogo.png"
-			alt="Kitty Reads" class="img-fluid">
-	</div>
 	<%
 	// Retrieve search results from session
 	String searchResults = (String) session.getAttribute("searchResults");
@@ -86,6 +101,9 @@
 	session.removeAttribute("searchResults");
 	%>
 	<div class="container mt-5" id="bookDisplay">
+		<div class="container text-center mt-3">
+			<h1><%=genreName%></h1>
+		</div>
 		<div class="row">
 			<%=searchResults%>
 		</div>

@@ -12,8 +12,10 @@
 	rel="stylesheet"
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/headerFooter.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/main.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/styles/headerFooter.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/styles/main.css">
 <style>
 .logo-img {
 	max-width: 250px; /* Set the maximum width for the logo image */
@@ -71,7 +73,8 @@
 	String userRole = (String) session.getAttribute("sessUserRole");
 	String loginStatus = (String) session.getAttribute("loginStatus");
 	String genre = "";
-
+	/* catID */
+	int genre_id = 0;
 	try {
 		// Step 1: Load JDBC Driver
 		Class.forName("com.mysql.cj.jdbc.Driver");
@@ -94,8 +97,16 @@
 		// Step 6: Process Result
 		while (rs.next()) {
 			String categoryName = rs.getString("category_name");
-			genre += "<a href=\"/categories/m/" + categoryName.toLowerCase() + "\">" + "<span>" + categoryName
-			+ "</span></a>";
+			String genreSqlStr = "SELECT category_id FROM categories WHERE category_name = ?;";
+			PreparedStatement genrePstmt = conn.prepareStatement(genreSqlStr);
+			genrePstmt.setString(1, categoryName.toUpperCase());
+			ResultSet genreRs = genrePstmt.executeQuery();
+
+			//  Retrieve genre name
+			if (genreRs.next()) {
+		genre_id = genreRs.getInt("category_id");
+			}
+			genre += "<a href=\"catDetails.jsp?catId=" + genre_id + "\">" + "<span>" + categoryName + "</span></a>";
 		}
 
 		// Close connection
@@ -144,10 +155,10 @@
 				<%
 				} else if (userRole.equals("owner")) {
 				%>
-				
+
 				<div class="d-flex">
-					<a class="btn" href="#">Member Management</a>
-					<a class="btn" href="adminActions.jsp">BookShelf</a>
+					<a class="btn" href="#">Member Management</a> <a class="btn"
+						href="adminActions.jsp">BookShelf</a>
 					<form class="d-flex">
 						<button class="btn btn-outline-primary me-2" type="button"
 							onClick="window.location.href='logoutFunction.jsp'">Logout</button>
