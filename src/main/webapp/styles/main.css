@@ -1,11 +1,16 @@
 @charset "ISO-8859-1";
+
 @charset "ISO-8859-1";
-@import url('https://fonts.googleapis.com/css2?family=Lora&display=swap');
-*{
+
+@import
+	url('https://fonts.googleapis.com/css2?family=Lora&display=swap');
+
+* {
 	font-family: 'Lora', serif;
 }
 
 body {
 	background-color: #0C243C;
-	color:#FDF4E3;
+	color: #FDF4E3;
 }
+
