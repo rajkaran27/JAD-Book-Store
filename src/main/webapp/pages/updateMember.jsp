@@ -64,33 +64,11 @@
 	%>
 
 	<div class="container mt-4">
-		<div class="row">
-			<div class="col-md-4">
-				<div class="card">
-					<img src="<%=src%>" class="card-img-top" alt="Book Image">
-				</div>
-			</div>
-			<div class="col-md-8">
-				<h2><%=title%></h2>
-				<p>
-					Rating:
-					<%=rating%>/5
-				</p>
-				<p><%=desc%></p>
-				<p>
-					Price: S$<%=price%></p>
-			</div>
-		</div>
 
 		<div class="container mt-4">
-			<h1>Update Book</h1>
+			<h1>Update Member</h1>
 			<form method="POST"
-				action="<%=request.getContextPath()%>/UpdateBookServlet">
-				<div class="mb-3">
-					<label for="imageLink" class="form-label">Image Link</label> <input
-						type="text" class="form-control" id="imageLink"
-						placeholder="Enter image link" value="<%=src%>">
-				</div>
+				action="<%=request.getContextPath()%>/UpdateMemberServlet">
 
 				<div class="mb-3">
 					<label for="title" class="form-label">Title of Book</label> <input
@@ -98,33 +76,8 @@
 						placeholder="Enter title" value="<%=title%>">
 				</div>
 
-				<div class="row mb-3">
-					<div class="col">
-						<label for="quantity" class="form-label">Quantity</label> <input
-							type="number" class="form-control" id="quantity"
-							placeholder="Enter quantity" value="<%=quantity%>">
-					</div>
-					<div class="col">
-						<label for="price" class="form-label">Price</label> <input
-							type="number" step="0.01" class="form-control" id="price"
-							placeholder="Enter price" value="<%=price%>">
-					</div>
-				</div>
-
-				<div class="mb-3">
-					<label for="rating" class="form-label">Rating</label> <input
-						type="number" class="form-control" id="rating"
-						placeholder="Enter rating" value="<%=rating%>">
-				</div>
-
-				<div class="mb-3">
-					<label for="description" class="form-label">Description</label>
-					<textarea class="form-control" id="description" rows="3"
-						placeholder="Enter description" value="<%=desc%>"></textarea>
-				</div>
-
 				<div class="d-flex justify-content-end">
-					<input type="hidden" name="bookId" value="<%=bookId%>">
+					<input type="hidden" name="memberId" value="<%=memberId%>">
 					<button type="submit" class="btn btn-primary">Update Book</button>
 				</div>
 			</form>

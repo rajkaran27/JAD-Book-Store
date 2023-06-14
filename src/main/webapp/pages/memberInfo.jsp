@@ -122,7 +122,8 @@ h2 {
 						<td><%=password%></td>
 						<td><a class="btn btn-primary btn-sm update-button"
 							href="updateMember.jsp?memberId=<%=memberId%>">Update</a> <a
-							class="btn btn-danger btn-sm delete-button">Delete</a></td>
+							class="btn btn-danger btn-sm delete-button"
+							onclick="confirmDelete(<%=memberId%>)">Delete</a></td>
 					</tr>
 					<%
 					}
@@ -140,14 +141,22 @@ h2 {
 
 	</div>
 
-	<%
+	<%-- 	<%
 	} else {
 	response.sendRedirect("login.jsp?errCode=accessDenied");
 	}
 	} else {
 	response.sendRedirect("login.jsp?errCode=accessDenied");
 	}
-	%>
+	%> --%>
+
+	<script>
+		function confirmDelete(bookId) {
+		  if (confirm("Are you sure you want to delete this book?")) {
+		    window.location.href = "<%=request.getContextPath()%>/DeleteBookServlet?bookId=" + memberId;
+		  }
+		}
+	</script>
 
 	<%@ include file="footer.jsp"%>
 </body>
