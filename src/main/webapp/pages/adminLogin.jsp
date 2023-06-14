@@ -6,6 +6,13 @@
 <meta charset="ISO-8859-1">
 <title>Admin Login</title>
 </head>
+<style>
+#loginForm {
+	box-shadow: -1px 4px 40px 10px rgba(0, 0, 0, 0.54);
+	-webkit-box-shadow: -1px 4px 40px 10px rgba(0, 0, 0, 0.54);
+	-moz-box-shadow: -1px 4px 40px 10px rgba(0, 0, 0, 0.54);
+}
+</style>
 <body>
 	<%@ include file="header.jsp"%>
 	
@@ -15,12 +22,12 @@
 	%>
 	
 	
-	<section class="h-100 gradient-form" style="background-color: #eee;">
+	<section class="h-100 gradient-form" style="background-color: #0C243C;">
 		<div class="container py-5 h-100">
 			<div
 				class="row d-flex justify-content-center align-items-center h-100">
 				<div class="col-xl-10">
-					<div class="card rounded-3 text-black">
+					<div class="card rounded-3 text-black" id="loginForm" style="background-color: #0C243C;">
 						<div class="row g-0">
 							<div class="col-lg-6">
 								<div class="card-body p-md-5 mx-md-4">

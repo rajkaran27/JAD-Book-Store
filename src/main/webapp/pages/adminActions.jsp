@@ -7,6 +7,39 @@
 <meta charset="ISO-8859-1">
 <title>Admin Page</title>
 </head>
+<style>
+table.table {
+  color: #FDF4E3; /* Set the text color */
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table.table th {
+  background-color: #212529;
+  color: #FDF4E3;
+  padding: 10px;
+}
+
+table.table td {
+  background-color: #343A40;
+  color: #FDF4E3;
+  padding: 10px;
+}
+
+table.table a.btn {
+  color: #FDF4E3;
+}
+
+table.table a.btn:hover {
+  color: #FDF4E3;
+}
+
+h2 {
+  color: #FDF4E3;
+}
+
+
+</style>
 <body>
 	<%@ include file="header.jsp"%>
 	<%
@@ -18,7 +51,7 @@
 	<div class="container">
 		<h1>Admin Page</h1>
 
-		<div class="card my-4">
+		<div class="card my-4" style="background-color: #0C243C;">
 			<div class="card-header">Add Book</div>
 			<div class="card-body">
 				<form action="<%=request.getContextPath()%>/AddBookServlet"
@@ -207,8 +240,8 @@
 					<tr>
 						<th>Title</th>
 						<th>Author</th>
-						<th>Price</th>
-						<th>Action</th>
+						<th>Quantity</th>
+						<th>Options</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -227,21 +260,22 @@
 						Statement stmt = conn.createStatement();
 
 						// Step 5: Execute SQL Command
-						String sqlStr = "SELECT books.title,books.price,authors.author_name FROM books JOIN authors ON authors.author_id=books.author_id;";
+						String sqlStr = "SELECT books.book_id,books.title,books.quantity,authors.author_name FROM books JOIN authors ON authors.author_id=books.author_id;";
 						ResultSet rs = stmt.executeQuery(sqlStr);
 
 						// Step 6: Process Result
 						while (rs.next()) {
 							String title = rs.getString("title");
-							String author = rs.getString("author");
-							double price = rs.getDouble("price");
+							String author = rs.getString("author_name");
+							int quantity = rs.getInt("quantity");
+							int bookId = rs.getInt("book_id");
 					%>
 					<tr>
 						<td><%=title%></td>
 						<td><%=author%></td>
-						<td><%=price%></td>
+						<td><%=quantity%></td>
 						<td>
-							<a class="btn btn-primary btn-sm update-button">Update</a>
+							<a class="btn btn-primary btn-sm update-button" href="updateBook.jsp?bookId=<%=bookId%>">Update</a>
 							<a class="btn btn-danger btn-sm delete-button" >Delete</a>
 						</td>
 					</tr>
@@ -262,6 +296,8 @@
 	</div>
 
 	<%
+	}else{
+		response.sendRedirect("login.jsp?errCode=accessDenied");
 	}
 	} else {
 	response.sendRedirect("login.jsp?errCode=accessDenied");
