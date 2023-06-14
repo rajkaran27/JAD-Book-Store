@@ -16,17 +16,16 @@ try {
 
 	// Step 3: Establish connection to URL
 	Connection conn = DriverManager.getConnection(connURL);
-
-	// Step 4: Create PreparedStatement object
-	String sqlStr = "SELECT books.*, authors.author_name FROM books INNER JOIN authors ON books.author_id = authors.author_id WHERE books.title LIKE CONCAT('%', ?, '%') OR authors.author_name LIKE CONCAT('%', ?, '%')";
-	PreparedStatement pstmt = conn.prepareStatement(sqlStr);
-
-	// Set parameter values for placeholders
-	pstmt.setString(1, searchQuery);
-	pstmt.setString(2, searchQuery);
-
+	
+	
+	String sqlCall = "{CALL SearchBookIndex(?,?)}";
+	
+	CallableStatement cs = conn.prepareCall(sqlCall);
+	cs.setString(1,searchQuery);
+	cs.setString(2,searchQuery);
+	
 	// Step 5: Execute SQL query
-	ResultSet rs = pstmt.executeQuery();
+	ResultSet rs = cs.executeQuery();
 
 	// Step 6: Process Result
 	while (rs.next()) {	
