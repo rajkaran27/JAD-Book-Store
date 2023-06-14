@@ -158,7 +158,7 @@
 
 				<div class="d-flex">
 					<a class="btn" href="memberInfo.jsp">Member Management</a> <a class="btn"
-						href="adminActions.jsp">BookShelf</a>
+						href="bookShelf.jsp">BookShelf</a>
 					<form class="d-flex">
 						<button class="btn btn-outline-primary me-2" type="button"
 							onClick="window.location.href='logoutFunction.jsp'">Logout</button>
