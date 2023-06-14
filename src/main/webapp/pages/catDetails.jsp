@@ -5,6 +5,12 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/styles/index.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/styles/main.css">
+<style>
+</style>
 </head>
 <body>
 	<%@ include file="header.jsp"%>

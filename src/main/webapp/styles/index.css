@@ -1,13 +1,11 @@
-
-
 .card {
 	width: 400px; /* Set the desired width */
 	margin-bottom: 2rem; /* Adjust the margin between cards */
-	background-color:#144367;
-	height:800px;
+	background-color: #144367;
+	height: 800px;
 }
 
-.card img{
-	height:100%;
-	width:100%;
+.card img {
+	height: 100%;
+	width: 100%;
 }

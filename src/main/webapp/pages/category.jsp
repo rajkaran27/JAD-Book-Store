@@ -5,6 +5,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Kitty Reads Category</title>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/main.css">
 <style>
 .category-button {
 	width: 200px;
