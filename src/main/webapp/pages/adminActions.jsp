@@ -7,45 +7,15 @@
 <meta charset="ISO-8859-1">
 <title>Admin Page</title>
 </head>
-<style>
-table.table {
-  color: #FDF4E3; /* Set the text color */
-  width: 100%;
-  border-collapse: collapse;
-}
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/styles/adminBook.css">
 
-table.table th {
-  background-color: #212529;
-  color: #FDF4E3;
-  padding: 10px;
-}
-
-table.table td {
-  background-color: #343A40;
-  color: #FDF4E3;
-  padding: 10px;
-}
-
-table.table a.btn {
-  color: #FDF4E3;
-}
-
-table.table a.btn:hover {
-  color: #FDF4E3;
-}
-
-h2 {
-  color: #FDF4E3;
-}
-
-
-</style>
 <body>
 	<%@ include file="header.jsp"%>
-	<%
+	<%-- <%
 	if (userRole != null) {
 		if (userRole.equals("owner")) {
-	%>
+	%> --%>
 
 
 	<div class="container">
@@ -274,10 +244,10 @@ h2 {
 						<td><%=title%></td>
 						<td><%=author%></td>
 						<td><%=quantity%></td>
-						<td>
-							<a class="btn btn-primary btn-sm update-button" href="updateBook.jsp?bookId=<%=bookId%>">Update</a>
-							<a class="btn btn-danger btn-sm delete-button" >Delete</a>
-						</td>
+						<td><a class="btn btn-primary btn-sm update-button"
+							href="updateBook.jsp?bookId=<%=bookId%>">Update</a> <a
+							class="btn btn-danger btn-sm delete-button"
+							onclick="confirmDelete(<%=bookId%>)">Delete</a></td>
 					</tr>
 					<%
 					}
@@ -295,14 +265,24 @@ h2 {
 
 	</div>
 
-	<%
+	<%-- <%
 	}else{
 		response.sendRedirect("login.jsp?errCode=accessDenied");
 	}
 	} else {
 	response.sendRedirect("login.jsp?errCode=accessDenied");
 	}
-	%>
+	%> --%>
+
+	<script>
+		function confirmDelete(bookId) {
+		  if (confirm("Are you sure you want to delete this book?")) {
+		    window.location.href = "<%=request.getContextPath()%>/DeleteBookServlet?bookId=" + bookId;
+		  }
+		}
+	</script>
+
+
 
 	<%@ include file="footer.jsp"%>
 </body>
