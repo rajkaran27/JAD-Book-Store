@@ -12,21 +12,19 @@
 <body>
 	<%@ include file="header.jsp"%>
 
-	<div class="container">
+	<div class="container mt-5">
 		<div class="row">
-			<div class="col-md-8">
+			<h1>Shopping Cart</h1>
+			<div class="col-md-8 mt-4">
 				<%
-				double totalCost = 0;
-				String title = "";
-				String src = "";
-				double price = 0;
+				// Declare bookQuantities map outside the try block
+				Map<Integer, Integer> bookQuantities = new HashMap<>();
 
+				double totalCost = 0;
 				String user = (String) session.getAttribute("sessUserRole");
 				ArrayList<Integer> bookList = (ArrayList<Integer>) session.getAttribute("bookList");
-				if (bookList != null) {
 
-					if (user != null) {
-						if (user.equals("member")) {
+				if (bookList != null && user != null && user.equals("member")) {
 					try {
 						// Step 1: Load JDBC Driver
 						Class.forName("com.mysql.cj.jdbc.Driver");
@@ -41,42 +39,50 @@
 						String sqlStr = "SELECT * FROM books WHERE book_id=?";
 						PreparedStatement pstmt = conn.prepareStatement(sqlStr);
 
-						// Step 5: Process each book in the list
+						// Step 5: Process each book in the list and update bookQuantities
 						for (int i = 0; i < bookList.size(); i++) {
-							int bookId = bookList.get(i);
+					int bookId = bookList.get(i);
 
-							// Set parameter values for placeholders
-							pstmt.setInt(1, bookId);
+					// Set parameter values for placeholders
+					pstmt.setInt(1, bookId);
 
-							// Step 6: Execute SQL query
-							ResultSet rs = pstmt.executeQuery();
+					// Step 6: Execute SQL query
+					ResultSet rs = pstmt.executeQuery();
 
-							// Step 7: Process Result
-							while (rs.next()) {
+					// Step 7: Process Result
+					if (rs.next()) {
+						String title = rs.getString("title");
+						String src = rs.getString("image");
+						double price = rs.getDouble("price");
+						totalCost += price;
 
-								title = rs.getString("title");
-								src = rs.getString("image");
-								price = rs.getDouble("price");
-								totalCost += rs.getDouble("price");
+						// Update book quantities
+						if (bookQuantities.containsKey(bookId)) {
+							int quantity = bookQuantities.get(bookId);
+							bookQuantities.put(bookId, quantity + 1);
+						} else {
+							bookQuantities.put(bookId, 1);
+						}
 				%>
-				<div class="row">
-					<div class="m-2">
-						<div class="row">
-							<div class="col-md-3">
-								<img src=<%=src%> class="img-fluid">
-							</div>
-							<div class="col-md-4"><%=title%></div>
-							<div class="col-md-2"><%=price%></div>
-							<div class="col-md-3">
-								<form action="RemoveFromCartServlet" method="POST">
-									<input type="hidden" name="bookId" value="<%=bookId%>">
-									<button type="submit" class="btn btn-danger">Delete</button>
-								</form>
-							</div>
-						</div>
+				<!-- Display the book information only if it's the first occurrence -->
+				<div class="row mb-3">
+					<div class="col-md-3">
+						<img src="<%=src%>" class="img-fluid">
+					</div>
+					<div class="col-md-4">
+						<h4><%=title%></h4>
+					</div>
+					<div class="col-md-2">
+						<p>
+							Price: $<%=price%></p>
+					</div>
+					<div class="col-md-3">
+						<form action="RemoveFromCartServlet" method="POST">
+							<input type="hidden" name="bookId" value="<%=bookId%>">
+							<button type="submit" class="btn btn-danger">Delete</button>
+						</form>
 					</div>
 				</div>
-
 				<%
 				}
 				}
@@ -87,26 +93,37 @@
 				e.printStackTrace();
 				out.println("Error: " + e);
 				}
-				}
 				} else {
 				response.sendRedirect("login.jsp");
 				}
-				} else {
-				out.print("<h1>Keep Shopping</h1>");
+
+				// Calculate the total number of books
+				int totalBooks = 0;
+				for (int quantity : bookQuantities.values()) {
+				totalBooks += quantity;
 				}
 				%>
-			</div>
-			<div class="col-md-4">
-				S$
-				<%=totalCost%>
+
+				<!-- Cart Summary section -->
+				<div class="container mt-5">
+					<div class="row">
+						<div class="col-md-8 mt-4">
+							<%-- Book rows go here --%>
+						</div>
+						<div class="col-md-4">
+							<h3>Cart Summary</h3>
+							<p>
+								Total Books:
+								<%=totalBooks%></p>
+							<p>
+								Total Cost: $<%=totalCost%></p>
+							<button type="submit" class="btn btn-primary">Proceed to
+								Payment</button>
+						</div>
+					</div>
+				</div>
 
 
-			</div>
-		</div>
-	</div>
-
-
-
-	<%@ include file="footer.jsp"%>
+				<%@ include file="footer.jsp"%>
 </body>
 </html>
