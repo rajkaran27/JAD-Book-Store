@@ -5,21 +5,35 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Kitty Reads Category</title>
-<link rel="stylesheet" type="text/css" href="../styles/index.css">
 <style>
-.category-box {
+.category-button {
 	width: 200px;
-	height: 200px;
-	border: 1px solid black;
+	height: 100px;
 	margin: 10px;
-	padding: 20px;
+	background-color: #144367;
+	color: white;
+	font-size: 20px;
+	border-radius: 10px;
+	display: flex;
+	text-decoration: none;
+	justify-content: center;
+	align-items: center;
 	text-align: center;
-	display: inline-block;
 }
 
-.category-title {
-	font-weight: bold;
-	margin-bottom: 10px;
+.category-button:hover {
+	background-color: #ff5252;
+}
+
+.container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	margin-top: 50px;
+	align-items: center;
+	flex-wrap: wrap;
+	flex-wrap: wrap;
 }
 </style>
 </head>
@@ -28,60 +42,57 @@
 	<%@page import="java.sql.*"%>
 
 	<%
-	// Retrieve search results from session
-	String searchResults = (String) session.getAttribute("searchResults");
+	try {
+		StringBuilder htmlBuilder = new StringBuilder();
 
-	// Clear the search results from the session
-	session.removeAttribute("searchResults");
+		// Step 1: Load JDBC Driver
+		Class.forName("com.mysql.cj.jdbc.Driver");
+
+		// Step 2: Define Connection URL
+		String connURL = "jdbc:mysql://localhost/bookstore?user=root&password=pjraj12!&serverTimezone=UTC";
+
+		// Step 3: Establish connection to URL
+		Connection conn = DriverManager.getConnection(connURL);
+
+		// Step 4: Create PreparedStatement object
+		String sqlStr = "SELECT * FROM bookstore.categories;";
+		PreparedStatement pstmt = conn.prepareStatement(sqlStr);
+
+		// Step 5: Execute SQL query
+		ResultSet rs = pstmt.executeQuery();
+
+		// Step 6: Process Result
+		while (rs.next()) {
+			String category = rs.getString("category_name");
+			int catId = rs.getInt("category_id");
+
+			htmlBuilder.append("<a href='catDetails.jsp?catId=").append(catId).append("' class='category-button'>")
+			.append(category).append("</a>");
+		}
+
+		session.setAttribute("categoryButtons", htmlBuilder.toString());
+
+		// Close connection
+		conn.close();
+	} catch (Exception e) {
+		e.printStackTrace();
+		out.println("Error: " + e);
+	}
 	%>
 
 	<div class="container text-center mt-3">
-		<img src="../assets/fulllogo.png" alt="Logo" class="img-fluid">
+		<img src="${pageContext.request.contextPath}/assets/brandLogo.png"
+			alt="Paws" class="img-fluid">
 	</div>
+	<%
+	// Retrieve category buttons from session
+	String categoryButtons = (String) session.getAttribute("categoryButtons");
 
-	<!--	<div class="container mt-4">
-		<div class="row justify-content-center">
-			<div class="col-12 col-md-6">
-				<form action="searchcat.jsp" method="GET" class="input-group">
-					<select class="form-control form-control-lg"
-						placeholder="Search by author or title" name="search">
-						<option value="" selected disabled>Search by author or
-							title</option>
-						<option value="author">Search by author</option>
-						<option value="title">Search by title</option>
-					</select>
-					<div class="input-group-append">
-						<button class="btn btn-primary btn-lg" type="submit">Search</button>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div> -->
-
-	<div class="container mt-4">
-		<div class="row justify-content-center">
-			<div class="col-12">
-				<div class="category-box">
-					<a href="searchcat.jsp?category=romance">
-						<div class="category-title">Romance</div> <img
-						src="../assets/romance.jpg" alt="Romance" width="150" height="150">
-					</a>
-				</div>
-				<div class="category-box">
-					<a href="searchcat.jsp?category=fantasy">
-						<div class="category-title">Fantasy</div> <img
-						src="../assets/fantasy.jpg" alt="Fantasy" width="150" height="150">
-					</a>
-				</div>
-				<div class="category-box">
-					<a href="searchcat.jsp?category=mystery">
-						<div class="category-title">Mystery</div> <img
-						src="../assets/mystery.jpg" alt="Mystery" width="150" height="150">
-					</a>
-				</div>
-				<!-- Add more category boxes as needed -->
-			</div>
-		</div>
+	// Clear the category buttons from the session
+	session.removeAttribute("categoryButtons");
+	%>
+	<div class="container mt-5" id="categoryDisplay">
+		<%=categoryButtons%>
 	</div>
 </body>
 </html>

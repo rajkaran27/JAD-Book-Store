@@ -5,7 +5,6 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.Statement;
 
 import javax.servlet.ServletException;
@@ -15,45 +14,35 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-/**
- * Servlet implementation class AddBookServlet
- */
-@WebServlet("/AddBookServlet")
-public class AddBookServlet extends HttpServlet {
+@WebServlet("/UpdateBookServlet")
+public class UpdateBookServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public UpdateBookServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public AddBookServlet() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		String path = request.getContextPath() + "/pages";
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String author = request.getParameter("author");
-		String category = request.getParameter("category");
-		String publisher = request.getParameter("publisher");
+		String path = request.getContextPath() + "/pages";
+
+		
 		String src = request.getParameter("src");
 		String title = request.getParameter("title").toUpperCase();
 		String desc = request.getParameter("desc");
-		String ISBN = request.getParameter("isbn");
 		String price = request.getParameter("price");
-		String pubDate = request.getParameter("pubDate");
 		String rating = request.getParameter("rating");
 		String quantity = request.getParameter("quantity");
+		String book_id = request.getParameter("bookId");
 		
 		PrintWriter out = response.getWriter();
 		HttpSession session = request.getSession();
-
+		
 		try {
 
 			// Step 1: Load JDBC Driver
@@ -69,32 +58,31 @@ public class AddBookServlet extends HttpServlet {
 			Statement stmt = conn.createStatement();
 
 			// Step 5: Execute SQL Command
-			String sqlStr = "INSERT INTO books(category_id,isbn,title,quantity,price,author_id,publisher_id,image,description,rating,publication_date) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+			String sqlStr = "UPDATE books SET title=?,quantity=?,price=?,src=?,desc=?,rating=? WHERE book_id=?";
+			//String sqlStr = "INSERT INTO books(category_id,isbn,title,quantity,price,author_id,publisher_id,image,description,rating,publication_date) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 			PreparedStatement pstmt = conn.prepareStatement(sqlStr);
 
 			// Set parameter values for placeholders
-			pstmt.setString(1, category);		
-			pstmt.setString(2, ISBN);
-			pstmt.setString(3, title);
-			pstmt.setString(4, quantity);
-			pstmt.setString(5, price);
-			pstmt.setString(6, author);
-			pstmt.setString(7, publisher);
-			pstmt.setString(8, src);
-			pstmt.setString(9, desc);
-			pstmt.setString(10, rating);
-			pstmt.setString(11, pubDate);
-
+	
+			pstmt.setString(1, title);
+			pstmt.setString(2, quantity);
+			pstmt.setString(3, price);
+			pstmt.setString(4, src);
+			pstmt.setString(5, desc);
+			pstmt.setString(6, rating);
+			pstmt.setString(7, book_id);
+			
 			// Execute SQL query
             int rowsAffected = pstmt.executeUpdate();
-
+            
+            response.sendRedirect(path+"//adminActions.jsp");
             
 			// Step 7: Close connection
 			conn.close();
 		} catch (Exception e) {
 			out.println("Error :" + e);
 		}
-
+		
 	}
 
 }

@@ -11,19 +11,19 @@
 	rel="stylesheet"
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
-<link rel="stylesheet" type="text/css" href="../styles/headerFooter.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/headerFooter.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/main.css">
+
 </head>
 <body>
-	<footer class="text-center text-black fixed-bottom">
+<footer class="text-center text-black">
+  <div class="container p-4"></div>
+  <div class="text-center p-3">
+    <p>Managed by M.B.</p>
+    <a href="adminLogin.jsp">Admin Login</a>
+  </div>
+</footer>
 
-		<div class="container p-4"></div>
-
-		<div class="text-center p-3">
-			<p>Managed by M.B.</p>
-			<a href="adminLogin.jsp">Admin Login</a>
-		</div>
-
-	</footer>
 
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

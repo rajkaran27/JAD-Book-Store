@@ -37,12 +37,16 @@ public class RegisterServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		String path = request.getContextPath() + "/pages";
 		
-		PrintWriter out = response.getWriter();
-		HttpSession session = request.getSession();
-		
 		String username = request.getParameter("username");
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
+		
+		if(!username.isEmpty() && !email.isEmpty() && !password.isEmpty()) {
+		
+		PrintWriter out = response.getWriter();
+		HttpSession session = request.getSession();
+		
+		
 		
 		try {
 		    // Step 1: Load JDBC Driver
@@ -78,14 +82,16 @@ public class RegisterServlet extends HttpServlet {
 			 * }
 			 */
 			
-			response.sendRedirect(path + "//login.jsp");
+			response.sendRedirect(path + "//login.jsp?errCode=registered");
 			
 			// Step 7: Close connection
 			conn.close();
 		} catch (Exception e) {
 			out.println("Error :" + e);
 		}
-		
+		}else {
+			response.sendRedirect(path + "//register.jsp?errCode=empty");
+		}
 	}
 
 }
