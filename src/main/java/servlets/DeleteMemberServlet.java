@@ -7,22 +7,23 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 
-import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-@WebServlet("/UpdateMemberServlet")
-public class UpdateMemberServlet extends HttpServlet {
+/**
+ * Servlet implementation class DeleteMemberServlet
+ */
+@WebServlet("/DeleteMemberServlet")
+public class DeleteMemberServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public UpdateMemberServlet() {
+	public DeleteMemberServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -31,16 +32,12 @@ public class UpdateMemberServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String path = request.getContextPath() + "/pages";
 
-		String email = request.getParameter("email");
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
-		String member_id = request.getParameter("memberId");
+		String memberId = request.getParameter("memberId");
+		int member_id = Integer.parseInt(memberId);
 
 		PrintWriter out = response.getWriter();
-		HttpSession session = request.getSession();
 
 		try {
-
 			// Step 1: Load JDBC Driver
 			Class.forName("com.mysql.cj.jdbc.Driver");
 
@@ -54,15 +51,12 @@ public class UpdateMemberServlet extends HttpServlet {
 			Statement stmt = conn.createStatement();
 
 			// Step 5: Execute SQL Command
-			String sqlStr = "UPDATE members SET email=?,username=?,password=? WHERE book_id=?";
-
+			String sqlStr = "DELETE FROM memebers WHERE member_id=?";
 			PreparedStatement pstmt = conn.prepareStatement(sqlStr);
 
 			// Set parameter values for placeholders
 
-			pstmt.setString(1, email);
-			pstmt.setString(2, username);
-			pstmt.setString(3, password);
+			pstmt.setInt(1, member_id);
 
 			// Execute SQL query
 			int rowsAffected = pstmt.executeUpdate();

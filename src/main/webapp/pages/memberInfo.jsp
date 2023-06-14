@@ -40,10 +40,10 @@ h2 {
 </style>
 <body>
 	<%@ include file="header.jsp"%>
-	<%
+	<%-- 	<%
 	if (userRole != null) {
 		if (userRole.equals("owner")) {
-	%>
+	%> --%>
 
 
 	<div class="container">
@@ -52,7 +52,7 @@ h2 {
 		<div class="card my-4" style="background-color: #0C243C;">
 			<div class="card-header">Add Member</div>
 			<div class="card-body">
-				<form action="<%=request.getContextPath()%>/AddBookServlet"
+				<form action="<%=request.getContextPath()%>/AddMemberServlet"
 					method="POST">
 
 					<div class="mb-3">
@@ -127,7 +127,6 @@ h2 {
 					</tr>
 					<%
 					}
-
 					// Step 7: Close connection
 					conn.close();
 					} catch (Exception e) {
@@ -137,8 +136,6 @@ h2 {
 				</tbody>
 			</table>
 		</div>
-	</div>
-
 	</div>
 
 	<%-- 	<%
@@ -151,9 +148,9 @@ h2 {
 	%> --%>
 
 	<script>
-		function confirmDelete(bookId) {
+		function confirmDelete(memberId) {
 		  if (confirm("Are you sure you want to delete this book?")) {
-		    window.location.href = "<%=request.getContextPath()%>/DeleteBookServlet?bookId=" + memberId;
+		    window.location.href = "<%=request.getContextPath()%>/DeleteMemberServlet?memberId=" + memberId;
 		  }
 		}
 	</script>
