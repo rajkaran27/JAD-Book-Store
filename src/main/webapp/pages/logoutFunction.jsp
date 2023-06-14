@@ -2,8 +2,6 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ page import="java.sql.*"%>
 
-
-
 <%
 	session.invalidate();
 	response.sendRedirect("index.jsp");
