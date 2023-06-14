@@ -32,7 +32,7 @@
 		Connection conn = DriverManager.getConnection(connURL);
 
 		// Step 4: Create PreparedStatement object
-		String sqlStr = "SELECT email, username, password FROM members WHERE members.member_id=?";
+		String sqlStr = "SELECT email, username, password FROM members WHERE member_id=?";
 		PreparedStatement pstmt = conn.prepareStatement(sqlStr);
 
 		// Set parameter values for placeholders

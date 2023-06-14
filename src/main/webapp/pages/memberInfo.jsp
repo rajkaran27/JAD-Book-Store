@@ -5,45 +5,16 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Admin Page</title>
+<title>Member Information</title>
 </head>
-<style>
-table.table {
-	color: #FDF4E3; /* Set the text color */
-	width: 100%;
-	border-collapse: collapse;
-}
-
-table.table th {
-	background-color: #212529;
-	color: #FDF4E3;
-	padding: 10px;
-}
-
-table.table td {
-	background-color: #343A40;
-	color: #FDF4E3;
-	padding: 10px;
-}
-
-table.table a.btn {
-	color: #FDF4E3;
-}
-
-table.table a.btn:hover {
-	color: #FDF4E3;
-}
-
-h2 {
-	color: #FDF4E3;
-}
-</style>
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/styles/adminBook.css">
 <body>
 	<%@ include file="header.jsp"%>
-	<%-- 	<%
+	<%
 	if (userRole != null) {
 		if (userRole.equals("owner")) {
-	%> --%>
+	%>
 
 
 	<div class="container">
@@ -54,7 +25,6 @@ h2 {
 			<div class="card-body">
 				<form action="<%=request.getContextPath()%>/AddMemberServlet"
 					method="POST">
-
 					<div class="mb-3">
 						<label for="email" class="form-label">Email</label> <input
 							class="form-control" id="email" name="email"
@@ -138,14 +108,14 @@ h2 {
 		</div>
 	</div>
 
-	<%-- 	<%
+	<%
 	} else {
 	response.sendRedirect("login.jsp?errCode=accessDenied");
 	}
 	} else {
 	response.sendRedirect("login.jsp?errCode=accessDenied");
 	}
-	%> --%>
+	%>
 
 	<script>
 		function confirmDelete(memberId) {
