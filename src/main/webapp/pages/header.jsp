@@ -157,7 +157,7 @@
 				%>
 
 				<div class="d-flex">
-					<a class="btn" href="#">Member Management</a> <a class="btn"
+					<a class="btn" href="memberInfo.jsp">Member Management</a> <a class="btn"
 						href="adminActions.jsp">BookShelf</a>
 					<form class="d-flex">
 						<button class="btn btn-outline-primary me-2" type="button"
