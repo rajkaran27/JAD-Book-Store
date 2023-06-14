@@ -2,6 +2,7 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -21,75 +22,65 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/RegisterServlet")
 public class RegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public RegisterServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public RegisterServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String path = request.getContextPath() + "/pages";
-		
+
 		String username = request.getParameter("username");
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
-		
-		if(!username.isEmpty() && !email.isEmpty() && !password.isEmpty()) {
-		
-		PrintWriter out = response.getWriter();
-		HttpSession session = request.getSession();
-		
-		
-		
-		try {
-		    // Step 1: Load JDBC Driver
-		    Class.forName("com.mysql.cj.jdbc.Driver");
 
-		    // Step 2: Define Connection URL
-		    String connURL = "jdbc:mysql://localhost/bookstore?user=root&password=pjraj12!&serverTimezone=UTC";
+		if (!username.isEmpty() && !email.isEmpty() && !password.isEmpty()) {
 
-			// Step 3: Establish connection to URL
-			Connection conn = DriverManager.getConnection(connURL);
+			PrintWriter out = response.getWriter();
+			HttpSession session = request.getSession();
 
-			// Step 4: Create Statement object
-			Statement stmt = conn.createStatement();
+			try {
+				// Step 1: Load JDBC Driver
+				Class.forName("com.mysql.cj.jdbc.Driver");
 
-			// Step 5: Execute SQL Command
-			String sqlStr = "INSERT INTO members(email,username,password) VALUES (?,?,?)";
-			PreparedStatement pstmt = conn.prepareStatement(sqlStr);
+				// Step 2: Define Connection URL
+				String connURL = "jdbc:mysql://localhost/bookstore?user=root&password=pjraj12!&serverTimezone=UTC";
 
-			// Set parameter values for placeholders
-			pstmt.setString(1, email);
-			pstmt.setString(2, username);
-			pstmt.setString(3, password);
-			
+				// Step 3: Establish connection to URL
+				Connection conn = DriverManager.getConnection(connURL);
 
-			// Execute SQL
-            int rowsAffected = pstmt.executeUpdate();
+				String sqlCall = "{CALL RegisterMember(?,?,?)}";
 
+				CallableStatement cs = conn.prepareCall(sqlCall);
+				cs.setString(1, username);
+				cs.setString(2, email);
+				cs.setString(3, password);
 
-			/*
-			 * // Step 6: Process Result while (rs.next()) {
-			 * 
-			 * 
-			 * }
-			 */
-			
-			response.sendRedirect(path + "//login.jsp?errCode=registered");
-			
-			// Step 7: Close connection
-			conn.close();
-		} catch (Exception e) {
-			out.println("Error :" + e);
-		}
-		}else {
+				// Execute SQL
+				int rowsAffected = cs.executeUpdate();
+
+				if (rowsAffected != 0) {
+					response.sendRedirect(path + "//login.jsp?errCode=registered");
+				} else {
+					response.sendRedirect(path + "//register.jsp?errCode=empty");
+				}
+
+				// Step 7: Close connection
+				conn.close();
+			} catch (Exception e) {
+				out.println("Error :" + e);
+			}
+		} else {
 			response.sendRedirect(path + "//register.jsp?errCode=empty");
 		}
 	}

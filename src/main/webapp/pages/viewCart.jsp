@@ -2,7 +2,11 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ page import="java.sql.*"%>
 <%@ page import="java.util.*"%>
-
+<%@ include file="header.jsp"%>
+<%
+if (userRole != null) {
+	if (userRole.equals("member")) {
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,12 +14,15 @@
 <title>Shopping Cart</title>
 </head>
 <body>
-	<%@ include file="header.jsp"%>
+	
+
+
 
 	<div class="container mt-5">
+		<h1>Shopping Cart</h1>
 		<div class="row">
-			<h1>Shopping Cart</h1>
-			<div class="col-md-8 mt-4">
+			<div class="col-md-8">
+
 				<%
 				// Declare bookQuantities map outside the try block
 				Map<Integer, Integer> bookQuantities = new HashMap<>();
@@ -103,27 +110,32 @@
 				totalBooks += quantity;
 				}
 				%>
-
-				<!-- Cart Summary section -->
-				<div class="container mt-5">
-					<div class="row">
-						<div class="col-md-8 mt-4">
-							<%-- Book rows go here --%>
-						</div>
-						<div class="col-md-4">
-							<h3>Cart Summary</h3>
-							<p>
-								Total Books:
-								<%=totalBooks%></p>
-							<p>
-								Total Cost: $<%=totalCost%></p>
-							<button type="submit" class="btn btn-primary">Proceed to
-								Payment</button>
-						</div>
-					</div>
+			</div>
+			<div class="col-md-4">
+				<div class="text-right">
+					<h3>Cart Summary</h3>
+					<p>
+						Total Books:
+						<%=totalBooks%></p>
+					<p>
+						Total Cost: $<%=totalCost%></p>
+					<button type="submit" class="btn btn-primary">Proceed to
+						Payment</button>
 				</div>
+			</div>
+		</div>
+	</div>
+	<%@ include file="footer.jsp"%>
 
 
-				<%@ include file="footer.jsp"%>
+
 </body>
 </html>
+<%
+} else {
+response.sendRedirect("login.jsp?errCode=accessDenied");
+}
+} else {
+response.sendRedirect("login.jsp?errCode=accessDenied");
+}
+%>

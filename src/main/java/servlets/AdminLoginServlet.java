@@ -2,6 +2,7 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -45,69 +46,62 @@ public class AdminLoginServlet extends HttpServlet {
 		String user = request.getParameter("loginId");
 		String pwd = request.getParameter("password");
 
-		System.out.print(user);
-		System.out.print(pwd);
+		if (!user.isEmpty() && !pwd.isEmpty()) {
 
-		String password = "";
-		String name = "";
-		Integer id = 0;
+			String password = "";
+			String name = "";
+			Integer id = 0;
 
-		try {
-			
-			// Step 1: Load JDBC Driver
-			Class.forName("com.mysql.cj.jdbc.Driver");
+			try {
 
-			// Step 2: Define Connection URL
-			String connURL = "jdbc:mysql://localhost/bookstore?user=root&password=pjraj12!&serverTimezone=UTC";
+				// Step 1: Load JDBC Driver
+				Class.forName("com.mysql.cj.jdbc.Driver");
 
-			// Step 3: Establish connection to URL
-			Connection conn = DriverManager.getConnection(connURL);
+				// Step 2: Define Connection URL
+				String connURL = "jdbc:mysql://localhost/bookstore?user=root&password=pjraj12!&serverTimezone=UTC";
 
-			// Step 4: Create Statement object
-			Statement stmt = conn.createStatement();
+				// Step 3: Establish connection to URL
+				Connection conn = DriverManager.getConnection(connURL);
 
-			// Step 5: Execute SQL Command
-			String sqlStr = "SELECT * FROM admin WHERE username=? AND password=?";
-			PreparedStatement pstmt = conn.prepareStatement(sqlStr);
-			
-			// Set parameter values for placeholders
-			pstmt.setString(1, user);
-			pstmt.setString(2, pwd);
+				String sqlCall = "{CALL AdminLogin(?,?)}";
 
-			// Execute SQL query
-			ResultSet rs = pstmt.executeQuery();
+				CallableStatement cs = conn.prepareCall(sqlCall);
+				cs.setString(1, user);
+				cs.setString(2, pwd);
 
-			// Step 6: Process Result
-			while (rs.next()) {
-				
-				id = rs.getInt("admin_id");
-				password = rs.getString("password");
-				name = rs.getString("username");
+				// Execute SQL query
+				ResultSet rs = cs.executeQuery();
 
-				
+				// Step 6: Process Result
+				while (rs.next()) {
 
+					id = rs.getInt("admin_id");
+					password = rs.getString("password");
+					name = rs.getString("username");
+
+				}
+
+				// Step 7: Close connection
+				conn.close();
+			} catch (Exception e) {
+				out.println("Error :" + e);
 			}
 
-			// Step 7: Close connection
-			conn.close();
-		} catch (Exception e) {
-			out.println("Error :" + e);
-		}
+			if (name.equalsIgnoreCase(user) && password.equals(pwd)) { // Create Role
+				session.setAttribute("sessUserRole", "owner");
+				session.setAttribute("sessUserID", id);
+				session.setAttribute("loginStatus", "success");
+				session.setMaxInactiveInterval(10); // Redirect to
+				// displayMember.jsp with parameters
+				response.sendRedirect(path + "//index.jsp");
+			} else {
 
-		
+				// for invalid credentials
+				response.sendRedirect(path + "//adminLogin.jsp?errCode=invalidLogin");
 
-		if (name.equalsIgnoreCase(user) && password.equals(pwd)) { // Create Role
-			session.setAttribute("sessUserRole", "owner");
-			session.setAttribute("sessUserID", id);
-			session.setAttribute("loginStatus", "success");
-			session.setMaxInactiveInterval(10); // Redirect to
-			// displayMember.jsp with parameters
-			response.sendRedirect(path + "//index.jsp");
+			}
 		} else {
-
-			// for invalid credentials
-			response.sendRedirect(path + "//adminLogin.jsp?errCode=invalidLogin");
-
+			response.sendRedirect(path + "//login.jsp?errCode=invalidLogin");
 		}
 
 	}

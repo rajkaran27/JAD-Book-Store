@@ -2,6 +2,7 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -62,17 +63,15 @@ public class LoginServlet extends HttpServlet {
 
 				// Step 4: Create Statement object
 				Statement stmt = conn.createStatement();
-
-				// Step 5: Execute SQL Command
-				String sqlStr = "SELECT * FROM members WHERE username = ? AND password = ?;";
-				PreparedStatement pstmt = conn.prepareStatement(sqlStr);
-
-				// Set parameter values for placeholders
-				pstmt.setString(1, user);
-				pstmt.setString(2, pwd);
+				
+				String sqlCall = "{CALL MemberLogin(?,?)}";
+				
+				CallableStatement cs = conn.prepareCall(sqlCall);
+				cs.setString(1,user);
+				cs.setString(2,pwd);
 
 				// Execute SQL query
-				ResultSet rs = pstmt.executeQuery();
+				ResultSet rs = cs.executeQuery();
 
 				// Step 6: Process Result
 				while (rs.next()) {
