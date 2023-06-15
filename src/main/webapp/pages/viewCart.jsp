@@ -13,6 +13,18 @@ if (userRole != null) {
 <meta charset="ISO-8859-1">
 <title>Shopping Cart</title>
 </head>
+<style>
+body {
+	/* added */
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+.container {
+	flex: 1;
+}
+</style>
 <body>
 
 
@@ -84,10 +96,13 @@ if (userRole != null) {
 							Price: $<%=price%></p>
 					</div>
 					<div class="col-md-3">
-						<form action="RemoveFromCartServlet" method="POST">
+						<%-- 					<form action="RemoveFromCartServlet" method="POST">
 							<input type="hidden" name="bookId" value="<%=bookId%>">
 							<button type="submit" class="btn btn-danger">Delete</button>
-						</form>
+						</form> --%>
+						<a class="btn btn-danger btn-sm delete-button"
+							onclick="confirmDelete(<%=bookId%>)">Delete</a>
+
 					</div>
 				</div>
 				<%
@@ -102,9 +117,7 @@ if (userRole != null) {
 				}
 				} else if (bookList == null) {
 				%>
-				<script>
-					alert("Please add a book to cart");
-				</script>
+
 				<%
 				} else {
 				response.sendRedirect("login.jsp");
@@ -131,10 +144,14 @@ if (userRole != null) {
 			</div>
 		</div>
 	</div>
+	<script>
+		function confirmDelete(bookId) {
+		  if (confirm("Are you sure you want to delete this item?")) {
+		    window.location.href = "<%=request.getContextPath()%>/RemoveFromCartServlet?bookId=" + bookId;
+		  }
+		}
+	</script>
 	<%@ include file="footer.jsp"%>
-
-
-
 </body>
 </html>
 <%
