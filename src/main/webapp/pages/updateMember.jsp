@@ -6,6 +6,18 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Update Member</title>
+<style>
+body {
+	/* added */
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+.container {
+	flex: 1;
+}
+</style>
 </head>
 <body>
 	<%@ include file="header.jsp"%>
