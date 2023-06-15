@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ page import="java.sql.*"%>
+<%@ include file="header.jsp"%>
+<%
+if (userRole != null) {
+	if (userRole.equals("owner")) {
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,11 +17,6 @@
 	href="${pageContext.request.contextPath}/styles/adminBook.css">
 
 <body>
-	<%@ include file="header.jsp"%>
-	<%
-	if (userRole != null) {
-		if (userRole.equals("owner")) {
-	%>
 
 
 	<div class="container">
@@ -265,14 +266,6 @@
 
 	</div>
 
-	<%
-	} else {
-	response.sendRedirect("login.jsp?errCode=accessDenied");
-	}
-	} else {
-	response.sendRedirect("login.jsp?errCode=accessDenied");
-	}
-	%>
 
 	<script>
 		function confirmDelete(bookId) {
@@ -285,3 +278,11 @@
 	<%@ include file="footer.jsp"%>
 </body>
 </html>
+<%
+} else {
+response.sendRedirect("login.jsp?errCode=accessDenied");
+}
+} else {
+response.sendRedirect("login.jsp?errCode=accessDenied");
+}
+%>

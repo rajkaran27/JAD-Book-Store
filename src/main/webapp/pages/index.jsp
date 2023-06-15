@@ -3,6 +3,7 @@
 
 <!DOCTYPE html>
 <html>
+	<%@ include file="header.jsp"%>
 
 <head>
 <meta charset="ISO-8859-1">
@@ -13,9 +14,6 @@
 </head>
 
 <body>
-	<%@ include file="header.jsp"%>
-	<%@page import="java.sql.*"%>
-
 	<%
 	// Retrieve search results from session
 	String searchResults = (String) session.getAttribute("searchResults");
@@ -32,7 +30,7 @@
 	<div class="container mt-4">
 		<div class="row justify-content-center">
 			<div class="col-12 col-md-6">
-				<form action="searchFunction.jsp" method="GET" class="input-group">
+				<form action="<%=request.getContextPath()%>/SearchBookServlet" method="GET" class="input-group">
 					<input type="text" class="form-control form-control-lg"
 						placeholder="Search by author or title" name="search">
 					<div class="input-group-append">
@@ -54,7 +52,6 @@
 	<%
 	}
 	%>
-
 
 	<%@ include file="footer.jsp"%>
 </body>

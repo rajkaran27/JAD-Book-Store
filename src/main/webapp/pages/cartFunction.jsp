@@ -5,6 +5,8 @@
 
 <%
 String userRole = (String) session.getAttribute("sessUserRole");
+
+ 
 ArrayList<Integer> bookIdList = (ArrayList<Integer>) session.getAttribute("book");
 
 String strbookId = request.getParameter("bookId");
@@ -26,5 +28,5 @@ if (userRole != null) {
 	
 } else {
 	response.sendRedirect("login.jsp");
-}
+} 
 %>

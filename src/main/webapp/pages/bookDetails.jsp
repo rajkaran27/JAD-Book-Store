@@ -1,16 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ page import="java.sql.*"%>
-
+<%@ include file="header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <title>Book Details</title>
-
 </head>
 <body>
-	<%@ include file="header.jsp"%>
 	<%
 	String bookId = request.getParameter("bookId");
 	int book_id = 0;
@@ -81,7 +79,7 @@
 				<img src=<%=src%> class="img-fluid" alt="Book Image">
 			</div>
 			<div class="col-md-9">
-				<div class="card" style="background-color:#0C243C;">
+				<div class="card" style="background-color: #0C243C;">
 					<div class="card-body">
 						<h1><%=title%></h1>
 						<p>
