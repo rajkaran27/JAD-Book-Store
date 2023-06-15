@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Update Book</title>
+<title>Update Member</title>
 </head>
 <body>
 	<%@ include file="header.jsp"%>
@@ -16,7 +16,7 @@
 	String email = "";
 	String username = "";
 	String password = "";
-	int memberId = 0;
+	/* int memberId = 0; */
 
 	if (userRole != null) {
 		if (userRole.equals("owner")) {
@@ -32,7 +32,7 @@
 		Connection conn = DriverManager.getConnection(connURL);
 
 		// Step 4: Create PreparedStatement object
-		String sqlStr = "SELECT email, username, password FROM members WHERE member_id=?";
+		String sqlStr = "SELECT email, username, password FROM members WHERE members.member_id=?";
 		PreparedStatement pstmt = conn.prepareStatement(sqlStr);
 
 		// Set parameter values for placeholders
@@ -46,7 +46,7 @@
 			email = rs.getString("email");
 			username = rs.getString("username");
 			password = rs.getString("password");
-			memberId = rs.getInt("member_id");
+			/* memberId = rs.getInt("member_id"); */
 
 		}
 		// Close connection
@@ -81,7 +81,7 @@
 			</div>
 
 			<div class="d-flex justify-content-end">
-				<input type="hidden" name="memberId" value="<%=memberId%>">
+				<input type="hidden" name="memberId" value="<%=member_id%>">
 				<button type="submit" class="btn btn-primary">Update Member</button>
 			</div>
 		</form>

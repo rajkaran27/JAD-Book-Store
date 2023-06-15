@@ -16,40 +16,28 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class AddBookServlet
+ * Servlet implementation class AddMemberServlet
  */
-@WebServlet("/AddBookServlet")
-public class AddBookServlet extends HttpServlet {
+@WebServlet("/AddMemberServlet")
+public class AddMemberServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public AddBookServlet() {
+	public AddMemberServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String path = request.getContextPath() + "/pages";
 
-		String author = request.getParameter("author");
-		String category = request.getParameter("category");
-		String publisher = request.getParameter("publisher");
-		String src = request.getParameter("src");
-		String title = request.getParameter("title").toUpperCase();
-		String desc = request.getParameter("desc");
-		String ISBN = request.getParameter("isbn");
-		String price = request.getParameter("price");
-		String pubDate = request.getParameter("pubDate");
-		String rating = request.getParameter("rating");
-		String quantity = request.getParameter("quantity");
+		String email = request.getParameter("email");
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
 
 		PrintWriter out = response.getWriter();
 		HttpSession session = request.getSession();
@@ -69,32 +57,24 @@ public class AddBookServlet extends HttpServlet {
 			Statement stmt = conn.createStatement();
 
 			// Step 5: Execute SQL Command
-			String sqlStr = "INSERT INTO books(category_id,isbn,title,quantity,price,author_id,publisher_id,image,description,rating,publication_date) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+			String sqlStr = "INSERT INTO members(email,username,password) VALUES (?,?,?)";
 			PreparedStatement pstmt = conn.prepareStatement(sqlStr);
 
 			// Set parameter values for placeholders
-			pstmt.setString(1, category);
-			pstmt.setString(2, ISBN);
-			pstmt.setString(3, title);
-			pstmt.setString(4, quantity);
-			pstmt.setString(5, price);
-			pstmt.setString(6, author);
-			pstmt.setString(7, publisher);
-			pstmt.setString(8, src);
-			pstmt.setString(9, desc);
-			pstmt.setString(10, rating);
-			pstmt.setString(11, pubDate);
+			pstmt.setString(1, email);
+			pstmt.setString(2, username);
+			pstmt.setString(3, password);
 
 			// Execute SQL query
 			int rowsAffected = pstmt.executeUpdate();
 
-			response.sendRedirect(path + "//bookShelf.jsp");
+			response.sendRedirect(path + "//memberInfo.jsp");
+
 			// Step 7: Close connection
 			conn.close();
 		} catch (Exception e) {
 			out.println("Error :" + e);
 		}
-
 	}
 
 }

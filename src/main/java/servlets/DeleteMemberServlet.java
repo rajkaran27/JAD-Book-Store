@@ -2,9 +2,11 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.Statement;
 
 import javax.servlet.ServletException;
@@ -28,7 +30,7 @@ public class DeleteMemberServlet extends HttpServlet {
 		// TODO Auto-generated constructor stub
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String path = request.getContextPath() + "/pages";
 
@@ -47,19 +49,14 @@ public class DeleteMemberServlet extends HttpServlet {
 			// Step 3: Establish connection to URL
 			Connection conn = DriverManager.getConnection(connURL);
 
-			// Step 4: Create Statement object
-			Statement stmt = conn.createStatement();
-
 			// Step 5: Execute SQL Command
-			String sqlStr = "DELETE FROM memebers WHERE member_id=?";
-			PreparedStatement pstmt = conn.prepareStatement(sqlStr);
+			String sqlCall = "{CALL DeleteMember(?)}";
 
-			// Set parameter values for placeholders
+			CallableStatement cs = (CallableStatement) conn.prepareCall(sqlCall);
+			cs.setInt(1, member_id);
 
-			pstmt.setInt(1, member_id);
-
-			// Execute SQL query
-			int rowsAffected = pstmt.executeUpdate();
+			// Step 5: Execute SQL query
+			ResultSet rs = cs.executeQuery();
 
 			response.sendRedirect(path + "//memberInfo.jsp");
 

@@ -54,7 +54,7 @@ public class UpdateMemberServlet extends HttpServlet {
 			Statement stmt = conn.createStatement();
 
 			// Step 5: Execute SQL Command
-			String sqlStr = "UPDATE members SET email=?,username=?,password=? WHERE book_id=?";
+			String sqlStr = "UPDATE members SET email=?,username=?,password=? WHERE member_id=?";
 
 			PreparedStatement pstmt = conn.prepareStatement(sqlStr);
 
@@ -63,6 +63,7 @@ public class UpdateMemberServlet extends HttpServlet {
 			pstmt.setString(1, email);
 			pstmt.setString(2, username);
 			pstmt.setString(3, password);
+			pstmt.setString(4, member_id);
 
 			// Execute SQL query
 			int rowsAffected = pstmt.executeUpdate();

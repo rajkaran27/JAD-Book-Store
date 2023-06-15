@@ -10,6 +10,16 @@
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/styles/main.css">
 <style>
+body {
+	/* added */
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+.container {
+	flex: 1;
+}
 </style>
 </head>
 <body>
@@ -114,5 +124,6 @@
 			<%=searchResults%>
 		</div>
 	</div>
+	<%@ include file="footer.jsp"%>
 </body>
 </html>
