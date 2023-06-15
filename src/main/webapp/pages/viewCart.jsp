@@ -14,7 +14,7 @@ if (userRole != null) {
 <title>Shopping Cart</title>
 </head>
 <body>
-	
+
 
 
 
@@ -100,6 +100,12 @@ if (userRole != null) {
 				e.printStackTrace();
 				out.println("Error: " + e);
 				}
+				} else if (bookList == null) {
+				%>
+				<script>
+					alert("Please add a book to cart");
+				</script>
+				<%
 				} else {
 				response.sendRedirect("login.jsp");
 				}
