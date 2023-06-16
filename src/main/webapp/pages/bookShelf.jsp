@@ -18,7 +18,19 @@ if (userRole != null) {
 
 <body>
 
+	<%
+	String message = request.getParameter("errCode");
 
+	if (message != null){
+		if(message.equals("updated")){
+	%>
+	<script>
+    alert("Book updated successfully!");
+	</script>
+	<%
+		}
+	}
+	%>
 	<div class="container">
 		<h1>Admin Page</h1>
 
@@ -30,31 +42,31 @@ if (userRole != null) {
 					<div class="mb-3">
 						<label for="imageLink" class="form-label">Image Link</label> <input
 							type="text" class="form-control" id="imageLink" name="src"
-							placeholder="Enter image link">
+							placeholder="Enter image link" required>
 					</div>
 
 					<div class="mb-3">
 						<label for="title" class="form-label">Title of Book</label> <input
 							class="form-control" id="description" name="title" rows="3"
-							placeholder="Enter title" type="text"></input>
+							placeholder="Enter title" type="text" required></input>
 					</div>
 
 					<div class="mb-3">
 						<label for="description" class="form-label">Description</label>s
 						<textarea class="form-control" id="description" name="desc"
-							rows="3" placeholder="Enter description"></textarea>
+							rows="3" placeholder="Enter description" required></textarea>
 					</div>
 
 					<div class="row mb-3">
 						<div class="col">
 							<label for="price" class="form-label">Price</label> <input
 								type="number" class="form-control" id="price" name="price"
-								placeholder="Enter price" step=".01">
+								placeholder="Enter price" step=".01" required>
 						</div>
 						<div class="col">
 							<label for="isbn" class="form-label">ISBN</label> <input
 								type="text" class="form-control" id="isbn" name="isbn"
-								placeholder="Enter ISBN">
+								placeholder="Enter ISBN" required>
 						</div>
 					</div>
 
@@ -62,19 +74,19 @@ if (userRole != null) {
 						<div class="col">
 							<label for="quantity" class="form-label">Quantity</label> <input
 								type="number" class="form-control" id="quantity" name="quantity"
-								placeholder="Enter quantity">
+								placeholder="Enter quantity" required>
 						</div>
 						<div class="col">
 							<label for="rating" class="form-label">Rating</label> <input
 								type="number" class="form-control" id="rating" name="rating"
-								placeholder="Enter rating">
+								placeholder="Enter rating" required>
 						</div>
 					</div>
 
 					<div class="mb-3">
 						<label for="publicationDate" class="form-label">Publication
 							Date</label> <input type="date" class="form-control" id="pubDate"
-							name="pubDate">
+							name="pubDate" required>
 					</div>
 
 

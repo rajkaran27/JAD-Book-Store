@@ -43,7 +43,7 @@ public class AddBookServlet extends HttpServlet {
 		String category = request.getParameter("category");
 		String publisher = request.getParameter("publisher");
 		String src = request.getParameter("src");
-		String title = request.getParameter("title").toUpperCase();
+		String title = request.getParameter("title");
 		String desc = request.getParameter("desc");
 		String ISBN = request.getParameter("isbn");
 		String price = request.getParameter("price");
@@ -54,10 +54,12 @@ public class AddBookServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		HttpSession session = request.getSession();
 
-		if (!author.isEmpty() || !category.isEmpty() || !publisher.isEmpty() || !src.isEmpty() || !title.isEmpty()
-				|| !desc.isEmpty() || !ISBN.isEmpty() || !price.isEmpty() || !pubDate.isEmpty() || !rating.isEmpty()
-				|| !quantity.isEmpty()) {
-
+		if (!(author.isEmpty() || category.isEmpty() || publisher.isEmpty() || src.isEmpty() || title.isEmpty()
+				|| desc.isEmpty() || ISBN.isEmpty() || price.isEmpty() || pubDate.isEmpty() || rating.isEmpty()
+				|| quantity.isEmpty())) {
+		
+		title = title.toUpperCase();	
+		
 			try {
 
 				// Step 1: Load JDBC Driver

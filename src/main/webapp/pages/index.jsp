@@ -1,10 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 
+
 <!DOCTYPE html>
 <html>
-<%@ include file="header.jsp"%>
-
 <head>
 <meta charset="ISO-8859-1">
 <title>Paws & Paperback</title>
@@ -28,6 +27,7 @@ body {
 }
 </style>
 <body>
+<%@ include file="header.jsp"%>
 	<%
 	// Retrieve search results from session
 	String searchResults = (String) session.getAttribute("searchResults");

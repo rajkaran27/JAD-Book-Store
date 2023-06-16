@@ -2,6 +2,11 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ page import="java.sql.*"%>
 <%@ include file="header.jsp"%>
+<%
+if (userRole == null || !userRole.equals("owner")) {
+  response.sendRedirect("login.jsp?errCode=accessDenied");
+}else{
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -125,3 +130,6 @@
 	<%@ include file="footer.jsp"%>
 </body>
 </html>
+<%
+}
+%>
