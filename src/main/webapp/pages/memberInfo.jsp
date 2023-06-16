@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ page import="java.sql.*"%>
+<%@ include file="header.jsp"%>
+<%
+if (userRole != null) {
+	if (userRole.equals("owner")) {
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,13 +15,6 @@
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/styles/adminBook.css">
 <body>
-	<%@ include file="header.jsp"%>
-	<%
-	if (userRole != null) {
-		if (userRole.equals("owner")) {
-	%>
-
-
 	<div class="container">
 		<h1>Registered Member's Information</h1>
 
@@ -108,23 +106,21 @@
 		</div>
 	</div>
 
-	<%
-	} else {
-	response.sendRedirect("login.jsp?errCode=accessDenied");
-	}
-	} else {
-	response.sendRedirect("login.jsp?errCode=accessDenied");
-	}
-	%>
-
 	<script>
 		function confirmDelete(memberId) {
-		  if (confirm("Are you sure you want to delete this book?")) {
+		  if (confirm("Are you sure you want to delete this member?")) {
 		    window.location.href = "<%=request.getContextPath()%>/DeleteMemberServlet?memberId=" + memberId;
 		  }
 		}
 	</script>
-
 	<%@ include file="footer.jsp"%>
 </body>
 </html>
+<%
+} else {
+response.sendRedirect("login.jsp?errCode=accessDenied");
+}
+} else {
+response.sendRedirect("login.jsp?errCode=accessDenied");
+}
+%>

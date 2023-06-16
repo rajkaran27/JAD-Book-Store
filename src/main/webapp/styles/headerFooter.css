@@ -1,18 +1,25 @@
 @charset "ISO-8859-1";
 
-#smallLogo{
-	height:100px;
+#smallLogo {
+	height: 100px;
 }
 
+<<<<<<< HEAD
 .navbar{
 	background-color:#FDF4E3;
 	color:#0C243C;
+=======
+.navbar {
+	background-color: #FDF4E3;
+	color: #FDF4E3;
+>>>>>>> cdb1d3ae3b6db587ab0e961fa6d0330f7abb88d6
 }
 
 footer {
-  position: relative;
-  bottom: 0;
-  width: 100%;
-  background-color: #0C243C;
-  color: #FDF4E3;
+	position: relative;
+	bottom: 0;
+	width: 100%;
+	background-color: #0C243C;
+	color: #FDF4E3;
+	text-align: center;
 }

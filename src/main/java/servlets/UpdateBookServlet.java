@@ -75,7 +75,7 @@ public class UpdateBookServlet extends HttpServlet {
 			// Execute SQL query
             int rowsAffected = pstmt.executeUpdate();
             
-            response.sendRedirect(path+"//adminActions.jsp");
+            response.sendRedirect(path+"//bookShelf.jsp");
             
 			// Step 7: Close connection
 			conn.close();

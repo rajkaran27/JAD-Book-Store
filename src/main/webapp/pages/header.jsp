@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ page import="java.sql.*"%>
-<% response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
-   response.setHeader("Pragma", "no-cache");
-   response.setHeader("Expires", "0");
+<%
+response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+response.setHeader("Pragma", "no-cache");
+response.setHeader("Expires", "0");
 %>
 <!DOCTYPE html>
 <html>
@@ -20,56 +21,8 @@
 	href="${pageContext.request.contextPath}/styles/headerFooter.css">
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/styles/main.css">
-<style>
-.logo-img {
-	max-width: 250px; /* Set the maximum width for the logo image */
-}
-
-/* category navbar */
-.navbar-dropdown {
-	display: none; /* Hide the dropdown by default */
-	position: absolute; /* Position the dropdown absolutely */
-	background-color: #e0e0e0; /* Add white background color */
-	z-index: 1;
-}
-
-.navbar-item:hover .navbar-dropdown {
-	display: block; /* Show the dropdown on hover */
-}
-
-.navbar-dropdown-list {
-	list-style-type: none; /* Remove the bullet points */
-	padding: 0; /* Remove default padding */
-}
-
-.navbar-dropdown-list a {
-	display: block; /* Make each option a block element */
-	padding: 8px 16px; /* Add padding for better spacing */
-	text-decoration: none; /* Remove underline */
-	color: #333; /* Set the text color */
-}
-
-.navbar-dropdown-list a:hover {
-	background-color: #f5f5f5; /* Add background color on hover */
-}
-
-/* space out the headings */
-.navbar-nav .nav-item {
-	margin-right: 10px;
-	/* Adjust the margin value to create spacing between options */
-}
-
-.navbar-item.has-dropdown .navbar-dropdown {
-	position: absolute;
-	display: none; /* Hide the dropdown by default */
-}
-
-.navbar-item.has-dropdown:hover .navbar-dropdown {
-	display: block; /* Show the dropdown on hover */
-}
-
-/* change navbar dropdown color */
-</style>
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/styles/header.css">
 </head>
 <body>
 
@@ -161,8 +114,8 @@
 				%>
 
 				<div class="d-flex">
-					<a class="btn" href="memberInfo.jsp">Member Management</a> <a class="btn"
-						href="bookShelf.jsp">BookShelf</a>
+					<a class="btn" href="memberInfo.jsp">Member Management</a> <a
+						class="btn" href="bookShelf.jsp">BookShelf</a>
 					<form class="d-flex">
 						<button class="btn btn-outline-primary me-2" type="button"
 							onClick="window.location.href='logoutFunction.jsp'">Logout</button>
@@ -174,10 +127,19 @@
 				%>
 				<div class="d-flex">
 					<form class="d-flex">
-						<button class="btn btn-outline-primary me-2" type="button"
-							onClick="window.location.href='login.jsp'">Login</button>
+						<ul class="navbar-nav">
+							<li class="navbar-item has-dropdown is-hoverable"><a
+								class="nav-link" onclick="return false;">Login Menu</a>
+								<div class="navbar-dropdown">
+									<div class="navbar-dropdown-list">
+										<a href="login.jsp"><span>Member Login</span></a> <a
+											href="adminLogin.jsp"><span>Admin Login</span></a>
+									</div>
+								</div></li>
+						</ul>
 					</form>
 				</div>
+
 				<%
 				}
 				%>

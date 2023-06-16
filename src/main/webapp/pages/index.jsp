@@ -3,16 +3,30 @@
 
 <!DOCTYPE html>
 <html>
-	<%@ include file="header.jsp"%>
+<%@ include file="header.jsp"%>
 
 <head>
 <meta charset="ISO-8859-1">
 <title>Paws & Paperback</title>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/index.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/main.css">
+
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/styles/main.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/styles/index.css">
 
 </head>
+<style>
+body {
+	/* added */
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
 
+.container {
+	flex: 1;
+}
+</style>
 <body>
 	<%
 	// Retrieve search results from session
@@ -30,7 +44,8 @@
 	<div class="container mt-4">
 		<div class="row justify-content-center">
 			<div class="col-12 col-md-6">
-				<form action="<%=request.getContextPath()%>/SearchBookServlet" method="GET" class="input-group">
+				<form action="<%=request.getContextPath()%>/SearchBookServlet"
+					method="GET" class="input-group">
 					<input type="text" class="form-control form-control-lg"
 						placeholder="Search by author or title" name="search">
 					<div class="input-group-append">
@@ -53,7 +68,7 @@
 	}
 	%>
 
-	<%@ include file="footer.jsp"%>
-</body>
 
+</body>
+<%@ include file="footer.jsp"%>
 </html>

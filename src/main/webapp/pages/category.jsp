@@ -1,47 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ include file="header.jsp"%>
+<%@page import="java.sql.*"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <title>Kitty Reads Category</title>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/main.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/styles/main.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/styles/category.css">
 <style>
-.category-button {
-	width: 200px;
-	height: 100px;
-	margin: 10px;
-	background-color: #144367;
-	color: white;
-	font-size: 20px;
-	border-radius: 10px;
+body {
+	/* added */
 	display: flex;
-	text-decoration: none;
-	justify-content: center;
-	align-items: center;
-	text-align: center;
-}
-
-.category-button:hover {
-	background-color: #ff5252;
+	flex-direction: column;
+	min-height: 100vh;
 }
 
 .container {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-wrap: wrap;
-	margin-top: 50px;
-	align-items: center;
-	flex-wrap: wrap;
-	flex-wrap: wrap;
+	flex: 1;
 }
 </style>
 </head>
 <body>
-	<%@ include file="header.jsp"%>
-	<%@page import="java.sql.*"%>
-
 	<%
 	try {
 		StringBuilder htmlBuilder = new StringBuilder();
@@ -95,5 +78,7 @@
 	<div class="container mt-5" id="categoryDisplay">
 		<%=categoryButtons%>
 	</div>
+
 </body>
+<%@ include file="footer.jsp"%>
 </html>

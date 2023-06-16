@@ -10,6 +10,16 @@
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/styles/main.css">
 <style>
+body {
+	/* added */
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+.container {
+	flex: 1;
+}
 </style>
 </head>
 <body>
@@ -60,29 +70,47 @@
 			double price = rs.getDouble("price");
 			int bookId = rs.getInt("book_id");
 
+			/* 			htmlBuilder.append("<div class='col-md-4'>");
+				htmlBuilder.append("<div class='card' style='border-radius: 15px;'>");
+				htmlBuilder.append(
+				"<div class='bg-image hover-overlay ripple ripple-surface ripple-surface-light' data-mdb-ripple-color='light'>");
+				htmlBuilder.append("<img src='").append(src).append(
+				"' style='border-top-left-radius: 15px; border-top-right-radius: 15px;' class='img-fluid' alt='Book Image' />");
+				htmlBuilder.append("<a href='#!'>");
+				htmlBuilder.append("<div class='mask'></div>");
+				htmlBuilder.append("</a>");
+				htmlBuilder.append("</div>");
+				htmlBuilder.append("<div class='card-body pb-0'>");
+				htmlBuilder.append("<div class='d-flex justify-content-between'>");
+				htmlBuilder.append("<div>");
+				htmlBuilder.append("<h5 class='card-title'>").append(title).append("</h5>");
+				htmlBuilder.append("<p class='small text-muted'>").append(price).append("</p>");
+				htmlBuilder.append("</div>");
+				htmlBuilder.append("</div>");
+				htmlBuilder.append("</div>");
+				htmlBuilder.append("<div class='card-body'>");
+				htmlBuilder.append("<div class='d-flex justify-content-between align-items-end pb-2 mb-1'>");
+				htmlBuilder.append("<a href='#!' class='text-dark fw-bold'></a>");
+				htmlBuilder.append("<a href='bookDetails.jsp?bookId=").append(bookId)
+				.append("' class='btn btn-primary'>Details</a>");
+				htmlBuilder.append("</div>");
+				htmlBuilder.append("</div>");
+				htmlBuilder.append("</div>");
+				htmlBuilder.append("</div>"); */
+
 			htmlBuilder.append("<div class='col-md-4'>");
-			htmlBuilder.append("<div class='card' style='border-radius: 15px;'>");
-			htmlBuilder.append(
-			"<div class='bg-image hover-overlay ripple ripple-surface ripple-surface-light' data-mdb-ripple-color='light'>");
+			htmlBuilder.append("<div class='card' style='border-radius: 15px; background-color:#144367;'>");
+			htmlBuilder.append("<div class='bg-image'>");
 			htmlBuilder.append("<img src='").append(src).append(
 			"' style='border-top-left-radius: 15px; border-top-right-radius: 15px;' class='img-fluid' alt='Book Image' />");
-			htmlBuilder.append("<a href='#!'>");
-			htmlBuilder.append("<div class='mask'></div>");
-			htmlBuilder.append("</a>");
 			htmlBuilder.append("</div>");
 			htmlBuilder.append("<div class='card-body pb-0'>");
-			htmlBuilder.append("<div class='d-flex justify-content-between'>");
-			htmlBuilder.append("<div>");
-			htmlBuilder.append("<h5 class='card-title'>").append(title).append("</h5>");
-			htmlBuilder.append("<p class='small text-muted'>").append(price).append("</p>");
-			htmlBuilder.append("</div>");
-			htmlBuilder.append("</div>");
-			htmlBuilder.append("</div>");
-			htmlBuilder.append("<div class='card-body'>");
 			htmlBuilder.append("<div class='d-flex justify-content-between align-items-end pb-2 mb-1'>");
-			htmlBuilder.append("<a href='#!' class='text-dark fw-bold'></a>");
+			htmlBuilder.append("<h5 class='card-title'>").append(title).append("</h5>");
+			htmlBuilder.append("<div>");
 			htmlBuilder.append("<a href='bookDetails.jsp?bookId=").append(bookId)
 			.append("' class='btn btn-primary'>Details</a>");
+			htmlBuilder.append("</div>");
 			htmlBuilder.append("</div>");
 			htmlBuilder.append("</div>");
 			htmlBuilder.append("</div>");
@@ -114,5 +142,6 @@
 			<%=searchResults%>
 		</div>
 	</div>
+	<%@ include file="footer.jsp"%>
 </body>
 </html>
