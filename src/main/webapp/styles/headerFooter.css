@@ -4,9 +4,15 @@
 	height: 100px;
 }
 
+<<<<<<< HEAD
+.navbar{
+	background-color:#FDF4E3;
+	color:#0C243C;
+=======
 .navbar {
 	background-color: #FDF4E3;
 	color: #FDF4E3;
+>>>>>>> cdb1d3ae3b6db587ab0e961fa6d0330f7abb88d6
 }
 
 footer {

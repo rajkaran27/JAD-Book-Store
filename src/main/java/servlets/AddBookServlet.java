@@ -54,45 +54,53 @@ public class AddBookServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		HttpSession session = request.getSession();
 
-		try {
+		if (!author.isEmpty() || !category.isEmpty() || !publisher.isEmpty() || !src.isEmpty() || !title.isEmpty()
+				|| !desc.isEmpty() || !ISBN.isEmpty() || !price.isEmpty() || !pubDate.isEmpty() || !rating.isEmpty()
+				|| !quantity.isEmpty()) {
 
-			// Step 1: Load JDBC Driver
-			Class.forName("com.mysql.cj.jdbc.Driver");
+			try {
 
-			// Step 2: Define Connection URL
-			String connURL = "jdbc:mysql://localhost/bookstore?user=root&password=pjraj12!&serverTimezone=UTC";
+				// Step 1: Load JDBC Driver
+				Class.forName("com.mysql.cj.jdbc.Driver");
 
-			// Step 3: Establish connection to URL
-			Connection conn = DriverManager.getConnection(connURL);
+				// Step 2: Define Connection URL
+				String connURL = "jdbc:mysql://localhost/bookstore?user=root&password=pjraj12!&serverTimezone=UTC";
 
-			// Step 4: Create Statement object
-			Statement stmt = conn.createStatement();
+				// Step 3: Establish connection to URL
+				Connection conn = DriverManager.getConnection(connURL);
 
-			// Step 5: Execute SQL Command
-			String sqlStr = "INSERT INTO books(category_id,isbn,title,quantity,price,author_id,publisher_id,image,description,rating,publication_date) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
-			PreparedStatement pstmt = conn.prepareStatement(sqlStr);
+				// Step 4: Create Statement object
+				Statement stmt = conn.createStatement();
 
-			// Set parameter values for placeholders
-			pstmt.setString(1, category);
-			pstmt.setString(2, ISBN);
-			pstmt.setString(3, title);
-			pstmt.setString(4, quantity);
-			pstmt.setString(5, price);
-			pstmt.setString(6, author);
-			pstmt.setString(7, publisher);
-			pstmt.setString(8, src);
-			pstmt.setString(9, desc);
-			pstmt.setString(10, rating);
-			pstmt.setString(11, pubDate);
+				// Step 5: Execute SQL Command
+				String sqlStr = "INSERT INTO books(category_id,isbn,title,quantity,price,author_id,publisher_id,image,description,rating,publication_date) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+				PreparedStatement pstmt = conn.prepareStatement(sqlStr);
 
-			// Execute SQL query
-			int rowsAffected = pstmt.executeUpdate();
+				// Set parameter values for placeholders
+				pstmt.setString(1, category);
+				pstmt.setString(2, ISBN);
+				pstmt.setString(3, title);
+				pstmt.setString(4, quantity);
+				pstmt.setString(5, price);
+				pstmt.setString(6, author);
+				pstmt.setString(7, publisher);
+				pstmt.setString(8, src);
+				pstmt.setString(9, desc);
+				pstmt.setString(10, rating);
+				pstmt.setString(11, pubDate);
 
-			response.sendRedirect(path + "//bookShelf.jsp");
-			// Step 7: Close connection
-			conn.close();
-		} catch (Exception e) {
-			out.println("Error :" + e);
+				// Execute SQL query
+				int rowsAffected = pstmt.executeUpdate();
+
+				response.sendRedirect(path + "//bookShelf.jsp");
+				// Step 7: Close connection
+				conn.close();
+			} catch (Exception e) {
+				out.println("Error :" + e);
+			}
+
+		} else {
+			response.sendRedirect(path + "//login.jsp?errCode=accessDenied");
 		}
 
 	}
