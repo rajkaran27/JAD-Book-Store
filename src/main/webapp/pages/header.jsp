@@ -100,14 +100,50 @@ response.setHeader("Expires", "0");
 				<%
 				if (userRole != null) {
 					if (userRole.equals("member")) {
+						if (session.getAttribute("sessUserID") != null) {
+					int member_id = (int) session.getAttribute("sessUserID");
+				%>
+				<%
+				try {
+					// Step 1: Load JDBC Driver
+					Class.forName("com.mysql.cj.jdbc.Driver");
+
+					// Step 2: Define Connection URL
+					String connURL = "jdbc:mysql://localhost/bookstore?user=root&password=pjraj12!&serverTimezone=UTC";
+
+					// Step 3: Establish connection to URL
+					Connection conn = DriverManager.getConnection(connURL);
+
+					// Step 4: Create Statement object
+					Statement stmt = conn.createStatement();
+
+					// Step 5: Execute SQL Command
+					String sqlStr = "SELECT email, username, password FROM members WHERE member_id= ?;";
+					PreparedStatement pstmt = conn.prepareStatement(sqlStr);
+					pstmt.setInt(1, member_id);
+					ResultSet rs = pstmt.executeQuery();
+
+					// Step 6: Process Result
+					while (rs.next()) {
 				%>
 				<div class="d-flex">
-					<a class="nav-link" href="viewCart.jsp" id="userCart">Cart</a>
+					<a class="nav-link"
+						href="memberProfile.jsp?memberId=<%=member_id%>">Profile</a>
+					</li> <a class="nav-link" href="viewCart.jsp" id="userCart">Cart</a>
 					<form class="d-flex">
 						<button class="btn btn-outline-primary me-2" type="button"
 							onClick="window.location.href='logoutFunction.jsp'">Logout</button>
 					</form>
 				</div>
+				<%
+				}
+				// Step 7: Close connection
+				conn.close();
+				} catch (Exception e) {
+				out.println("Error :" + e);
+				}
+				}
+				%>
 				<%
 				} else if (userRole.equals("owner")) {
 				%>

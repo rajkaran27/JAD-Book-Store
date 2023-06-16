@@ -62,8 +62,8 @@ public class RegisterServlet extends HttpServlet {
 				String sqlCall = "{CALL RegisterMember(?,?,?)}";
 
 				CallableStatement cs = conn.prepareCall(sqlCall);
-				cs.setString(1, username);
-				cs.setString(2, email);
+				cs.setString(1, email);
+				cs.setString(2, username);
 				cs.setString(3, password);
 
 				// Execute SQL
