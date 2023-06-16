@@ -30,6 +30,8 @@ body {
 	String password = "";
 	/* int memberId = 0; */
 
+	String userRole = (String) session.getAttribute("sessUserRole");
+
 	if (userRole != null) {
 		if (userRole.equals("owner")) {
 			try {

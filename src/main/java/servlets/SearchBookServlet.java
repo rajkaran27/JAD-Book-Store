@@ -67,22 +67,24 @@ public class SearchBookServlet extends HttpServlet {
 				String src = rs.getString("image");
 				double price = rs.getDouble("price");
 				int bookId = rs.getInt("book_id");
+				String category = rs.getString("category_name");
 				
-				htmlBuilder.append("<div class='col-md-4'>");
-				htmlBuilder.append("<div class='card' style='border-radius: 15px; background-color:#144367;'>");
-				htmlBuilder.append("<div class='bg-image'>");
-				htmlBuilder.append("<img src='").append(src).append("' style='border-top-left-radius: 15px; border-top-right-radius: 15px;' class='img-fluid' alt='Book Image' />");
-				htmlBuilder.append("</div>");
-				htmlBuilder.append("<div class='card-body pb-0'>");
-				htmlBuilder.append("<div class='d-flex justify-content-between align-items-end pb-2 mb-1'>");
-				htmlBuilder.append("<h5 class='card-title'>").append(title).append("</h5>");
-				htmlBuilder.append("<div>");
-				htmlBuilder.append("<a href='bookDetails.jsp?bookId=").append(bookId).append("' class='btn btn-primary'>Details</a>");
-				htmlBuilder.append("</div>");
-				htmlBuilder.append("</div>");
-				htmlBuilder.append("</div>");
-				htmlBuilder.append("</div>");
-				htmlBuilder.append("</div>");	
+				htmlBuilder.append("<div class='col-md-4'>")
+			    .append("<div class='card' style='border-radius:10px;'>")
+			    .append("<a href='bookDetails.jsp?bookId=").append(bookId).append("'>")
+			    .append("<img src='").append(src).append("' class='card-img-top' alt='Book Image' style='height:600px;' />")
+			    .append("</a>")
+			    .append("<div class='card-body'>")
+			    .append("<div class='text-center'>")
+			    .append("<a href='bookDetails.jsp?bookId=").append(bookId).append("' style='text-decoration: none; color:#0C243C;'>")
+			    .append("<h4 class='card-title'>").append(title).append("</h4>")
+			    .append("</a>")
+			    .append("<p style='text-decoration: none; color:#0C243C;'>").append(category).append("| S$").append(price).append("</p>")
+			    .append("</div>")
+			    .append("</div>")
+			    .append("</div>")
+			    .append("</div>");
+				
 			}
 
 				

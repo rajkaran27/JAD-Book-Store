@@ -2,10 +2,11 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ page import="java.sql.*"%>
 <%@ page import="java.util.*"%>
-<%@ include file="header.jsp"%>
 <%
+String userRole = (String) session.getAttribute("sessUserRole");
+
 if (userRole != null) {
-	if (userRole.equals("member")) {
+	if (userRole.equals("owner")) {
 %>
 <!DOCTYPE html>
 <html>
@@ -26,8 +27,7 @@ body {
 }
 </style>
 <body>
-
-
+	<%@ include file="header.jsp"%>
 
 
 	<div class="container mt-5">

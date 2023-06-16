@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ page import="java.sql.*"%>
-<%@ include file="header.jsp"%>
 <%
-if (userRole == null || !userRole.equals("owner")) {
-  response.sendRedirect("login.jsp?errCode=accessDenied");
-}else{
+String userRole = (String) session.getAttribute("sessUserRole");
+
+if (userRole != null) {
+	if (userRole.equals("owner")) {
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,6 +15,7 @@ if (userRole == null || !userRole.equals("owner")) {
 <title>Update Book</title>
 </head>
 <body>
+<%@ include file="header.jsp"%>
 
 	<%
 	
@@ -136,5 +138,10 @@ if (userRole == null || !userRole.equals("owner")) {
 </body>
 </html>
 <%
+} else {
+response.sendRedirect("login.jsp?errCode=accessDenied");
+}
+} else {
+response.sendRedirect("login.jsp?errCode=accessDenied");
 }
 %>

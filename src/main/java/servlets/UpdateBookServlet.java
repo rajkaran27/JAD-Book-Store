@@ -31,8 +31,6 @@ public class UpdateBookServlet extends HttpServlet {
 
 		String path = request.getContextPath() + "/pages";
 
-		System.out.println("SevletP1");
-
 		String src = request.getParameter("src");
 		String title = request.getParameter("title");
 		String price = request.getParameter("price");
@@ -47,7 +45,6 @@ public class UpdateBookServlet extends HttpServlet {
 				|| rating == null || rating.isEmpty() || quantity == null || quantity.isEmpty())) {
 
 			title = title.toUpperCase();
-			System.out.println("SevletP2");
 
 			try {
 
@@ -79,10 +76,7 @@ public class UpdateBookServlet extends HttpServlet {
 				// Execute SQL query
 				int rowsAffected = pstmt.executeUpdate();
 
-				System.out.println(rowsAffected);
-
 				response.sendRedirect(path + "//bookShelf.jsp?errCode=updated");
-				System.out.println("SevletP3");
 
 				// Step 7: Close connection
 				conn.close();

@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ page import="java.sql.*"%>
-<%@ include file="header.jsp"%>
 <%
+String userRole = (String) session.getAttribute("sessUserRole");
+
 if (userRole != null) {
 	if (userRole.equals("owner")) {
 %>
+
 
 <!DOCTYPE html>
 <html>
@@ -17,25 +19,25 @@ if (userRole != null) {
 	href="${pageContext.request.contextPath}/styles/adminBook.css">
 
 <body>
-
+	<%@ include file="header.jsp"%>
 	<%
 	String message = request.getParameter("errCode");
 
-	if (message != null){
-		if(message.equals("updated")){
+	if (message != null) {
+		if (message.equals("updated")) {
 	%>
 	<script>
-    alert("Book updated successfully!");
+	alert("Book Updated Succesfully!")
 	</script>
 	<%
-		}
+	}
 	}
 	%>
 	<div class="container">
-		<h1>Admin Page</h1>
+		<h1>Book Shelf</h1>
 
 		<div class="card my-4" style="background-color: #0C243C;">
-			<div class="card-header">Add Book</div>
+			<div class="card-header h2">Add a new Book</div>
 			<div class="card-body">
 				<form action="<%=request.getContextPath()%>/AddBookServlet"
 					method="POST">
@@ -284,7 +286,7 @@ if (userRole != null) {
 		  if (confirm("Are you sure you want to delete this book?")) {
 		    window.location.href = "<%=request.getContextPath()%>/DeleteBookServlet?bookId=" + bookId;
 		  }
-		}
+		}		
 	</script>
 
 	<%@ include file="footer.jsp"%>

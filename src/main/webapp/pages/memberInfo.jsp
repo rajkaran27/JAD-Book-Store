@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ page import="java.sql.*"%>
-<%@ include file="header.jsp"%>
 <%
+String userRole = (String) session.getAttribute("sessUserRole");
+
 if (userRole != null) {
 	if (userRole.equals("owner")) {
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,6 +17,7 @@ if (userRole != null) {
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/styles/adminBook.css">
 <body>
+	<%@ include file="header.jsp"%>
 	<div class="container">
 		<h1>Registered Member's Information</h1>
 

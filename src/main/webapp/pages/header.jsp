@@ -26,8 +26,7 @@ response.setHeader("Expires", "0");
 </head>
 <body>
 	<%
-	String userRole = (String) session.getAttribute("sessUserRole");
-	String loginStatus = (String) session.getAttribute("loginStatus");
+	String userRoleH = (String) session.getAttribute("sessUserRole");
 	String genre = "";
 	/* catID */
 	int genre_id = 0;
@@ -98,8 +97,8 @@ response.setHeader("Expires", "0");
 					</ul>
 				</div>
 				<%
-				if (userRole != null) {
-					if (userRole.equals("member")) {
+				if (userRoleH != null) {
+					if (userRoleH.equals("member")) {
 				%>
 				<div class="d-flex">
 					<a class="nav-link" href="viewCart.jsp" id="userCart">Cart</a>
@@ -109,7 +108,7 @@ response.setHeader("Expires", "0");
 					</form>
 				</div>
 				<%
-				} else if (userRole.equals("owner")) {
+				} else if (userRoleH.equals("owner")) {
 				%>
 
 				<div class="d-flex">
