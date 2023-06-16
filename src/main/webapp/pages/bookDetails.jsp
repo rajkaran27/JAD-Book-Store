@@ -122,13 +122,6 @@
 	</div>
 
 
-	<div class="container">
-		<!-- <h1>You may like:</h1>
- -->
-	</div>
-
-
-
 	<%@ include file="footer.jsp"%>
 </body>
 </html>

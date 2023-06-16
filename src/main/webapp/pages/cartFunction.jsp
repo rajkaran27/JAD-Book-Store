@@ -6,7 +6,6 @@
 <%
 String userRole = (String) session.getAttribute("sessUserRole");
 
- 
 ArrayList<Integer> bookIdList = (ArrayList<Integer>) session.getAttribute("book");
 
 String strbookId = request.getParameter("bookId");
@@ -14,19 +13,26 @@ String strbookId = request.getParameter("bookId");
 int book_id = Integer.parseInt(strbookId);
 
 if (userRole != null) {
-	
-	if (bookIdList == null) {
-		bookIdList = new ArrayList<>();
-		session.setAttribute("book", bookIdList);
+
+	if (userRole.equals("member")) {
+
+		Cookie[] cookies = request.getCookies();
+		
+		if (bookIdList == null) {
+			bookIdList = new ArrayList<>();
+			session.setAttribute("book", bookIdList);
+		}
+		
+		bookIdList.add(book_id);
+
+		session.setAttribute("bookList", bookIdList);
+		response.sendRedirect("viewCart.jsp");
+	} else {
+		response.sendRedirect("login.jsp");
+
 	}
-	
-	bookIdList.add(book_id);
-	
-	session.setAttribute("bookList",bookIdList);
-	response.sendRedirect("viewCart.jsp");
-	
-	
+
 } else {
 	response.sendRedirect("login.jsp");
-} 
+}
 %>
