@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ page import="java.sql.*"%>
-<%@ include file="header.jsp"%>
 <%
+String userRole = (String)session.getAttribute("sessUserRole");
+
 String strmemberId = request.getParameter("memberId");
 int memberId = Integer.parseInt(strmemberId);
 String email = "";
@@ -32,6 +33,8 @@ body {
 }
 </style>
 <body>
+<%@ include file="header.jsp"%>
+
 	<div class="container">
 		<div>
 			<h2>My Profile</h2>

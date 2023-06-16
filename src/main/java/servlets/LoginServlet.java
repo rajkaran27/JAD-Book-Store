@@ -39,9 +39,6 @@ public class LoginServlet extends HttpServlet {
 		String user = request.getParameter("loginId");
 		String pwd = request.getParameter("password");
 		
-		System.out.print(user);
-		System.out.print(pwd);
-		
 		if (!user.isEmpty() && !pwd.isEmpty() ) {
 
 			PrintWriter out = response.getWriter();

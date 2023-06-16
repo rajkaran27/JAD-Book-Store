@@ -69,7 +69,7 @@ public class SearchBookServlet extends HttpServlet {
 				int bookId = rs.getInt("book_id");
 				String category = rs.getString("category_name");
 				
-				htmlBuilder.append("<div class='col-md-4'>")
+				htmlBuilder.append("<div class='col-md-4 mb-4'>")
 			    .append("<div class='card' style='border-radius:10px;'>")
 			    .append("<a href='bookDetails.jsp?bookId=").append(bookId).append("'>")
 			    .append("<img src='").append(src).append("' class='card-img-top' alt='Book Image' style='height:600px;' />")
@@ -77,10 +77,10 @@ public class SearchBookServlet extends HttpServlet {
 			    .append("<div class='card-body'>")
 			    .append("<div class='text-center'>")
 			    .append("<a href='bookDetails.jsp?bookId=").append(bookId).append("' style='text-decoration: none; color:#0C243C;'>")
-			    .append("<h4 class='card-title'>").append(title).append("</h4>")
+			    .append("<h4 class='card-title fw-bold'>").append(title).append("</h4>")
 			    .append("</a>")
 			    .append("</div>")
-			    .append("<p class='text-center' style='text-decoration: none; color:#0C243C;'>").append(category).append("| S$").append(price).append("</p>")
+			    .append("<p class='text-center mb-2' style='text-decoration: none; color:#0C243C;'>").append(category).append(" | S$").append(price).append("</p>")
 			    .append("</div>")
 			    .append("</div>")
 			    .append("</div>");

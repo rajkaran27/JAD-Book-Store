@@ -6,7 +6,7 @@
 String userRole = (String) session.getAttribute("sessUserRole");
 
 if (userRole != null) {
-	if (userRole.equals("owner")) {
+	if (userRole.equals("member")) {
 %>
 <!DOCTYPE html>
 <html>
