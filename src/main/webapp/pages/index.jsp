@@ -60,7 +60,7 @@ body {
 	if (searchResults != null) {
 	%>
 	<div class="container mt-5" id="bookDisplay">
-		<p>Click on a book to find out more!</p>
+		<p class='text-center'>Click on a book to find out more!</p>
 		<div class="row">
 			<%=searchResults%>
 		</div>

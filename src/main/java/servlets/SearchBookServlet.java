@@ -79,8 +79,8 @@ public class SearchBookServlet extends HttpServlet {
 			    .append("<a href='bookDetails.jsp?bookId=").append(bookId).append("' style='text-decoration: none; color:#0C243C;'>")
 			    .append("<h4 class='card-title'>").append(title).append("</h4>")
 			    .append("</a>")
-			    .append("<p style='text-decoration: none; color:#0C243C;'>").append(category).append("| S$").append(price).append("</p>")
 			    .append("</div>")
+			    .append("<p class='text-center' style='text-decoration: none; color:#0C243C;'>").append(category).append("| S$").append(price).append("</p>")
 			    .append("</div>")
 			    .append("</div>")
 			    .append("</div>");
