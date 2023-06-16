@@ -72,7 +72,6 @@ public class AddBookServlet extends HttpServlet {
 				// Step 4: Create Statement object
 				Statement stmt = conn.createStatement();
 
-<<<<<<< HEAD
 				// Step 5: Execute SQL Command
 				String sqlStr = "INSERT INTO books(category_id,isbn,title,quantity,price,author_id,publisher_id,image,description,rating,publication_date) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 				PreparedStatement pstmt = conn.prepareStatement(sqlStr);
@@ -102,29 +101,6 @@ public class AddBookServlet extends HttpServlet {
 
 		} else {
 			response.sendRedirect(path + "//login.jsp?errCode=accessDenied");
-=======
-			// Set parameter values for placeholders
-			pstmt.setString(1, category);
-			pstmt.setString(2, ISBN);
-			pstmt.setString(3, title);
-			pstmt.setString(4, quantity);
-			pstmt.setString(5, price);
-			pstmt.setString(6, author);
-			pstmt.setString(7, publisher);
-			pstmt.setString(8, src);
-			pstmt.setString(9, desc);
-			pstmt.setString(10, rating);
-			pstmt.setString(11, pubDate);
-
-			// Execute SQL query
-			int rowsAffected = pstmt.executeUpdate();
-
-			response.sendRedirect(path + "//bookShelf.jsp");
-			// Step 7: Close connection
-			conn.close();
-		} catch (Exception e) {
-			out.println("Error :" + e);
->>>>>>> cdb1d3ae3b6db587ab0e961fa6d0330f7abb88d6
 		}
 
 	}
