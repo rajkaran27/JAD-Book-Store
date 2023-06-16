@@ -25,7 +25,6 @@ response.setHeader("Expires", "0");
 	href="${pageContext.request.contextPath}/styles/header.css">
 </head>
 <body>
-
 	<%
 	String userRole = (String) session.getAttribute("sessUserRole");
 	String loginStatus = (String) session.getAttribute("loginStatus");
