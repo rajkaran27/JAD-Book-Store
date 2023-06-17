@@ -150,7 +150,7 @@ if (userRole != null) {
 
 	<script>
 		function confirmDelete(memberId) {
-		  if (confirm("Are you sure you want to delete this member?")) {
+		  if (confirm("Are you sure you want your account?")) {
 		    window.location.href = "<%=request.getContextPath()%>
 		/DeleteMemberServlet?memberId="
 						+ memberId;

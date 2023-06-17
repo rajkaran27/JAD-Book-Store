@@ -8,8 +8,6 @@
 <meta charset="ISO-8859-1">
 <title>Paws & Paperback</title>
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/styles/index.css">
-<link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/styles/main.css">
 </head>
 <style>

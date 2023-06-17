@@ -70,20 +70,20 @@
 							if (message != null) {
 								if (message.equals("invalidLogin")) {
 							%>
-							<div class="m-3">
+							<div class="m-3" style="color:#0C243C">
 								<p class="text-center">Wrong username or password. Try
 									again.</p>
 							</div>
 							<%
 							} else if (message.equals("accessDenied")) {
 							%>
-							<div class="m-3">
+							<div class="m-3" style="color:#0C243C">
 								<p class="text-center">Access Denied.</p>
 							</div>
 							<%
 							} else if (message.equals("registered")) {
 							%>
-							<div class="m-3">
+							<div class="m-3" style="color:#0C243C">
 								<p class="text-center">You have joined the kittens!</p>
 							</div>
 							<%

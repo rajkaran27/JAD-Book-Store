@@ -87,8 +87,9 @@ if (userRole != null) {
 
 					<div class="mb-3">
 						<label for="publicationDate" class="form-label">Publication
-							Date</label> <input type="date" class="form-control" id="pubDate"
+							Date</label> <input type="text" class="form-control" id="pubDate"
 							name="pubDate" required>
+						<small>Please enter the date in this format (e.g. 17 March 2009)</small>
 					</div>
 
 

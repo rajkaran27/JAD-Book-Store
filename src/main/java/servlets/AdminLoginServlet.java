@@ -89,9 +89,7 @@ public class AdminLoginServlet extends HttpServlet {
 
 			if (name.equalsIgnoreCase(user) && password.equals(pwd)) { // Create Role
 				session.setAttribute("sessUserRole", "owner");
-				session.setAttribute("sessUserID", id);
-				session.setAttribute("loginStatus", "success");
-				session.setMaxInactiveInterval(10); // Redirect to
+				session.setMaxInactiveInterval(900); // Redirect to
 				// displayMember.jsp with parameters
 				response.sendRedirect(path + "//index.jsp");
 			} else {

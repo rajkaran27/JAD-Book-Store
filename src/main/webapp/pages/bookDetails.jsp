@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ page import="java.sql.*"%>
-<%@ include file="header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +8,8 @@
 <title>Book Details</title>
 </head>
 <body>
+	<%@ include file="header.jsp"%>
+
 	<%
 	String bookId = request.getParameter("bookId");
 	int book_id = 0;
