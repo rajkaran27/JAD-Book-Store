@@ -134,54 +134,6 @@
 		</div>
 	</div>
 
-	<%-- <div class="container mt-4">
-		<div class="row">
-			<div class="col-md-3">
-				<img src=<%=src%> class="img-fluid" alt="Book Image">
-			</div>
-			<div class="col-md-9">
-				<div class="card" style="background-color: #0C243C;">
-					<div class="card-body">
-						<h1><%=title%></h1>
-						<p>
-							By:
-							<%=author%></p>
-						<p>
-							<%=desc%></p>
-						<div class="container">
-
-							<h4>Book Details:</h4>
-							<p>
-								ISBN:
-								<%=ISBN%></p>
-							<p>
-								Publisher:
-								<%=publisher%></p>
-							<p>
-								Publication Date:
-								c</p>
-							<p>
-								Category:
-								<%=category%></p>
-
-						</div>
-						<div class="d-flex justify-content-between">
-							<p class="h3">
-								Price(SGD):
-								<%=price%></p>
-							<form action="cartFunction.jsp" method="POST">
-								<input type="hidden" name="bookId" value="<%=book_id%>">
-								<button type="submit" class="btn btn-primary btn-sm">Add
-									to Cart</button>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-2"></div>
-		</div>
-	</div> --%>
-
 
 	<%@ include file="footer.jsp"%>
 </body>
