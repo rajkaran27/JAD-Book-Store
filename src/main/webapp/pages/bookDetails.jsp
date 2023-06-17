@@ -72,9 +72,69 @@
 		out.println("Error: " + e);
 	}
 	%>
+	<div class="container mt-4" style="color:#0C243C;">
+		<div class="row">
+			<div class="col-md-3">
+				<img src=<%=src%> class="img-fluid" alt="Book Image">
+			</div>
+			<div class="col-md-9">
+				<div class="card">
+					<div class="card-body">
+						<h1><%=title%></h1>
+						<p>
+							by
+							<%=author%>
+						</p>
+						<hr class="separator-line">
+						<p>
+							<%=desc%></p>
 
 
-	<div class="container mt-4">
+						<div class="row text-center my-3">
+							<div class="col">
+								<img src="https://cdn-icons-png.flaticon.com/128/2/2273.png"
+									style="height: 30px;">
+								<p><%=ISBN%>
+								</p>
+							</div>
+							<div class="col">
+								<img src="https://cdn-icons-png.flaticon.com/128/747/747310.png"
+									style="height: 30px;">
+								<p><%=pubDate%></p>
+							</div>
+							<div class="col">
+								<img src="https://cdn-icons-png.flaticon.com/128/814/814587.png"
+									style="height: 30px;">
+								<p><%=publisher%></p>
+							</div>
+							<div class="col">
+								<img
+									src="https://cdn-icons-png.flaticon.com/128/2702/2702134.png"
+									style="height: 30px;">
+								<p><%=category%></p>
+							</div>
+							<div class="row justify-content-between mt-3 mb-0">
+								<hr class="separator-line">
+								<div class='col'>
+									<h4>
+										$<%=price%></h4>
+								</div>
+								<div class='col'>
+									<form action="cartFunction.jsp" method="POST">
+										<input type="hidden" name="bookId" value="<%=book_id%>">
+										<button type="submit" class="btn btn-primary btn-sm">Add
+											to Cart</button>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<%-- <div class="container mt-4">
 		<div class="row">
 			<div class="col-md-3">
 				<img src=<%=src%> class="img-fluid" alt="Book Image">
@@ -99,7 +159,7 @@
 								<%=publisher%></p>
 							<p>
 								Publication Date:
-								<%=pubDate%></p>
+								c</p>
 							<p>
 								Category:
 								<%=category%></p>
@@ -120,7 +180,7 @@
 			</div>
 			<div class="col-md-2"></div>
 		</div>
-	</div>
+	</div> --%>
 
 
 	<%@ include file="footer.jsp"%>

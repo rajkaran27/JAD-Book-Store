@@ -73,6 +73,7 @@ public class RemoveFromCartServlet extends HttpServlet {
 		}else {
 			*/
 		}
+	
 		// Redirect back to the view cart page
 		
 		/*
@@ -90,6 +91,6 @@ public class RemoveFromCartServlet extends HttpServlet {
 		 * format e.printStackTrace(); } }
 		 */
 
-	}
+	
 
 }
