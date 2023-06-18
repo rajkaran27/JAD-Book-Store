@@ -9,6 +9,14 @@ String userRole = (String) session.getAttribute("sessUserRole");
 if (userRole != null) {
 	if (userRole.equals("member")) {
 %>
+<%
+/* ===========================================================
+Author: Rajkaran (2109039)
+Date: 9/6/2023
+Description: JAD CA1
+============================================================= */
+%>
+
 <!DOCTYPE html>
 <html>
 <head>

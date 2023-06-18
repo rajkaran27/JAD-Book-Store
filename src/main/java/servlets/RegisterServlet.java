@@ -38,6 +38,13 @@ public class RegisterServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		/* ===========================================================
+		Author: Rajkaran (2109039)
+		Date: 9/6/2023
+		Description: JAD CA1
+		============================================================= */
+		
 		String path = request.getContextPath() + "/pages";
 
 		String username = request.getParameter("username");

@@ -8,6 +8,13 @@ if (userRole != null) {
 	if (userRole.equals("owner")) {
 %>
 
+<%
+/* ===========================================================
+Author: Rajkaran (2109039)
+Date: 9/6/2023
+Description: JAD CA1
+============================================================= */
+%>
 
 <!DOCTYPE html>
 <html>
@@ -30,12 +37,12 @@ if (userRole != null) {
 	alert("Book Updated Succesfully!")
 	</script>
 	<%
-	}else if(message.equals("added")){
+	} else if (message.equals("added")) {
 	%>
 	<script>
 	alert("Book Added Succesfully!")
 	</script>
-	
+
 	<%
 	}
 	}
@@ -95,8 +102,8 @@ if (userRole != null) {
 					<div class="mb-3">
 						<label for="publicationDate" class="form-label">Publication
 							Date</label> <input type="text" class="form-control" id="pubDate"
-							name="pubDate" required>
-						<small>Please enter the date in this format (e.g. 17 March 2009)</small>
+							name="pubDate" required> <small>Please enter the
+							date in this format (e.g. 17 March 2009)</small>
 					</div>
 
 
@@ -106,7 +113,7 @@ if (userRole != null) {
 							<option value="" selected disabled>Select category</option>
 							<%
 							// Category dynamic listing
-							
+
 							try {
 
 								// Step 1: Load JDBC Driver
@@ -148,7 +155,7 @@ if (userRole != null) {
 							<option value="" selected disabled>Select author</option>
 							<%
 							// Author dynamic listing
-							
+
 							try {
 
 								// Step 1: Load JDBC Driver
@@ -190,9 +197,9 @@ if (userRole != null) {
 							<option value="" selected disabled>Select publisher</option>
 							<%
 							// Publisher dynamic listing
-							
+
 							try {
-			
+
 								// Step 1: Load JDBC Driver
 								Class.forName("com.mysql.cj.jdbc.Driver");
 
@@ -246,8 +253,7 @@ if (userRole != null) {
 				<tbody>
 					<%
 					// Books dynamic listing
-					
-					
+
 					try {
 						// Step 1: Load JDBC Driver
 						Class.forName("com.mysql.cj.jdbc.Driver");

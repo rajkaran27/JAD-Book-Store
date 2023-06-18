@@ -32,7 +32,7 @@
 				<div class="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-9">
 					<div class="text-center my-5">
 						<img
-							src="https://getbootstrap.com/docs/5.0/assets/brand/bootstrap-logo.svg"
+							src="${pageContext.request.contextPath}/assets/logo.png"
 							alt="logo" width="100">
 					</div>
 					<div class="card shadow-lg" style="background-color: #FFFFFF">

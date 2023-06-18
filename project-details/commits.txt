@@ -1,0 +1,88 @@
+42a1a80 pjcape deleted test files
+b427abf pjcape updated profile and member management
+d000d49 rajkaran27 ABLE TO ADD MULTI BOOKS
+95f7f34 rajkaran27 cant add multiple books
+79d95ab rajkaran27 fixed conflicts is viewcart.jsp
+c8dfbcc rajkaran27 changed back to session
+78ce8db rajkaran27 changed back to session
+c4708a0 pjcape updated user profile
+6339a72 rajkaran27 fuck cookies
+40d5019 pjcape removefromcart
+a4cdf48 rajkaran27 hi pj
+4695cbf rajkaran27 book details
+1a8b0c6 rajkaran27 shopping cart
+404aac0 rajkaran27 aesthetic part 3
+83ad117 rajkaran27 aesthetic part 2
+f5063ac rajkaran27 17 june
+e19ef9a pjcape profile page
+c3a91f2 rajkaran27 issues managed raj
+ba9db27 rajkaran27 login and bookcard 2
+ab9d38f rajkaran27 login and bookcard
+77355ac pjcape added profile page changed header as well as registerservlet
+6b0d1d0 pjcape what is happening
+64fb222 rajkaran27 header issue fixed?
+f13d93c rajkaran27 Merge branch 'main' of https://github.com/rajkaran27/JAD-Book-Store
+03e1388 rajkaran27 header issue
+6ff1593 pjcape Merge branch 'main' of https://github.com/rajkaran27/JAD-Book-Store
+91cf468 pjcape header
+bbd5677 rajkaran27 issue on addbookservlet resolved?
+a1f49f7 rajkaran27 issueee
+fe98d65 rajkaran27 pj pull pls
+cdb1d3a pjcape updated footer for viewcart.jsp and add removefromcartservlet
+f886f5f pjcape updated footer as well as cat details page
+4782eb5 pjcape changed alot of member managament features
+c1628d3 pjcape updated alot of member management features
+785faad pjcape updated header
+b7dfe5c rajkaran27 servlets
+b5a9cc1 rajkaran27 securiy
+17a5f0c pjcape updatememberservlet.js
+dab1d87 pjcape Merge branch 'main' of https://github.com/rajkaran27/JAD-Book-Store
+786d9e6 pjcape Update
+84e8958 rajkaran27 wergz
+b449348 rajkaran27 fixed error pj push
+882b826 pjcape update
+e8594c8 rajkaran27 js dialog
+2d0c261 pjcape Manage Member
+485fd0b pjcape update
+cde5fec rajkaran27 stored procedure
+54d5d73 rajkaran27 Merge branch 'main' of https://github.com/rajkaran27/JAD-Book-Store into Rajkaran
+3156d0b rajkaran27 changes
+15bc3e5 rajkaran27 changes
+4582400 pjcape updated category.jsp
+6a302d0 pjcape updated header and category.jsp
+45ce70e rajkaran27 verify
+7e2a52d rajkaran27 aesthetic
+a854d18 pjcape Merge branch 'main' of https://github.com/rajkaran27/JAD-Book-Store
+df4204a pjcape Merge branch 'pranjal'
+5cc83ba pjcape updated category.jsp
+6d9949a rajkaran27 Merge branch 'Rajkaran'
+74720d6 rajkaran27 pwa
+5b93973 pjcape improved header.jsp
+5eeb614 pjcape improved header.jsp
+8624dfe rajkaran27 admin
+cf7a572 rajkaran27 pj
+daeea27 rajkaran27 kitty
+cb0cb55 rajkaran27 major
+57051d2 pjcape added a few items in header.jsp
+6956c61 rajkaran27 Merge branch 'Rajkaran'
+5ca3557 rajkaran27 changed to google
+b28a31d rajkaran27 Merge branch 'main' of https://github.com/rajkaran27/JAD-Book-Store
+2ea6d5f rajkaran27 lol
+61686e0 pjcape nil
+afc5b72 pjcape Merge branch 'main' of https://github.com/rajkaran27/JAD-Book-Store
+298a5d9 pjcape classpath
+1417bdb rajkaran27 did a lot of changes
+70ab74b pjcape Merge branch 'main' of https://github.com/rajkaran27/JAD-Book-Store
+b146368 pjcape Category page
+a370e37 rajkaran27 Merge branch 'Rajkaran'
+28b15d9 rajkaran27 register page Rajkaran
+54e68fe rajkaran27 Merge branch 'main' of https://github.com/rajkaran27/JAD-Book-Store
+97573fa rajkaran27 added Register page Rajkaran
+4b78ec4 pjcape Changed server runtime
+95fd4ce rajkaran27 added category and did changes to index and login Rajkaran
+a6eeae7 rajkaran27 Login page created Rajkaran
+ec8897d rajkaran27 added sql files
+7288f59 rajkaran27 second commit raj
+80ab354 rajkaran27 Initial commit raj
+d871a7a rajkaran27 merge waj
+03629e3 rajkaran27 First Commit-Rajkaran

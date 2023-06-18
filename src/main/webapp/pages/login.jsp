@@ -1,5 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%
+/* ===========================================================
+Author: Rajkaran (2109039)
+Date: 9/6/2023
+Description: JAD CA1
+============================================================= */
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,8 +45,7 @@
 			<div class="row justify-content-sm-center h-100">
 				<div class="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-9">
 					<div class="text-center my-5">
-						<img
-							src="${pageContext.request.contextPath}/assets/logo.png"
+						<img src="${pageContext.request.contextPath}/assets/logo.png"
 							alt="logo" width="100">
 					</div>
 					<div class="card shadow-lg" style="background-color: #FFFFFF">
@@ -61,8 +68,7 @@
 								</div>
 
 								<div class="d-flex align-items-center">
-									<button type="submit" class="btn btn-primary ms-auto"
-										>Login</button>
+									<button type="submit" class="btn btn-primary ms-auto">Login</button>
 								</div>
 							</form>
 
@@ -70,20 +76,20 @@
 							if (message != null) {
 								if (message.equals("invalidLogin")) {
 							%>
-							<div class="m-3" style="color:#0C243C">
+							<div class="m-3" style="color: #0C243C">
 								<p class="text-center">Wrong username or password. Try
 									again.</p>
 							</div>
 							<%
 							} else if (message.equals("accessDenied")) {
 							%>
-							<div class="m-3" style="color:#0C243C">
+							<div class="m-3" style="color: #0C243C">
 								<p class="text-center">Access Denied.</p>
 							</div>
 							<%
 							} else if (message.equals("registered")) {
 							%>
-							<div class="m-3" style="color:#0C243C">
+							<div class="m-3" style="color: #0C243C">
 								<p class="text-center">You have joined the kittens!</p>
 							</div>
 							<%

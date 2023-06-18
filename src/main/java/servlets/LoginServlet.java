@@ -34,6 +34,13 @@ public class LoginServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		
+		/* ===========================================================
+		Author: Rajkaran (2109039)
+		Date: 9/6/2023
+		Description: JAD CA1
+		============================================================= */
+		
 		String path = request.getContextPath() + "/pages";
 
 		String user = request.getParameter("loginId");

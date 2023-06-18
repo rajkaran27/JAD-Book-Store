@@ -6,3 +6,10 @@
 	session.invalidate();
 	response.sendRedirect("index.jsp");
 %>
+<%
+/* ===========================================================
+Author: Rajkaran (2109039)
+Date: 9/6/2023
+Description: JAD CA1
+============================================================= */
+%>
