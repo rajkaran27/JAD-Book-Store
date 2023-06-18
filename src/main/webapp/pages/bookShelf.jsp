@@ -30,6 +30,13 @@ if (userRole != null) {
 	alert("Book Updated Succesfully!")
 	</script>
 	<%
+	}else if(message.equals("added")){
+	%>
+	<script>
+	alert("Book Added Succesfully!")
+	</script>
+	
+	<%
 	}
 	}
 	%>
@@ -98,6 +105,8 @@ if (userRole != null) {
 							class="form-select" id="category" name="category">
 							<option value="" selected disabled>Select category</option>
 							<%
+							// Category dynamic listing
+							
 							try {
 
 								// Step 1: Load JDBC Driver
@@ -138,6 +147,8 @@ if (userRole != null) {
 							class="form-select" id="author" name="author">
 							<option value="" selected disabled>Select author</option>
 							<%
+							// Author dynamic listing
+							
 							try {
 
 								// Step 1: Load JDBC Driver
@@ -178,8 +189,10 @@ if (userRole != null) {
 							class="form-select" id="publisher" name="publisher">
 							<option value="" selected disabled>Select publisher</option>
 							<%
+							// Publisher dynamic listing
+							
 							try {
-
+			
 								// Step 1: Load JDBC Driver
 								Class.forName("com.mysql.cj.jdbc.Driver");
 
@@ -232,6 +245,9 @@ if (userRole != null) {
 				</thead>
 				<tbody>
 					<%
+					// Books dynamic listing
+					
+					
 					try {
 						// Step 1: Load JDBC Driver
 						Class.forName("com.mysql.cj.jdbc.Driver");
@@ -283,6 +299,7 @@ if (userRole != null) {
 
 
 	<script>
+	//to delete book confirmation.
 		function confirmDelete(bookId) {
 		  if (confirm("Are you sure you want to delete this book?")) {
 		    window.location.href = "<%=request.getContextPath()%>/DeleteBookServlet?bookId=" + bookId;
@@ -294,6 +311,7 @@ if (userRole != null) {
 </body>
 </html>
 <%
+// send them back if they are not owner
 } else {
 response.sendRedirect("login.jsp?errCode=accessDenied");
 }

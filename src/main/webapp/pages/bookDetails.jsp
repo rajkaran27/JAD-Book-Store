@@ -13,10 +13,13 @@
 	<%
 	String bookId = request.getParameter("bookId");
 	int book_id = 0;
+	
+	//checking if bookId is null
 	if (bookId != null) {
+		
 		book_id = Integer.parseInt(bookId);
 	} else {
-		out.print("error");
+		response.sendRedirect("index.jsp");
 	}
 
 	String title = "";

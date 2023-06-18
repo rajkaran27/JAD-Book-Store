@@ -94,7 +94,7 @@ public class AddBookServlet extends HttpServlet {
 				// Execute SQL query
 				int rowsAffected = pstmt.executeUpdate();
 
-				response.sendRedirect(path + "//bookShelf.jsp");
+				response.sendRedirect(path + "//bookShelf.jsp?errCode=added");
 				// Step 7: Close connection
 				conn.close();
 			} catch (Exception e) {

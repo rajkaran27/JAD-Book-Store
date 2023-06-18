@@ -2,47 +2,22 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ page import="java.sql.*"%>
 <%@ page import="java.util.*"%>
-<%@ page import="java.net.*" %>
-
-<%-- <%
-String userRole = (String) session.getAttribute("sessUserRole");
-
-ArrayList<Integer> bookIdList = (ArrayList<Integer>) session.getAttribute("book");
-
-String strbookId = request.getParameter("bookId");
-
-int book_id = Integer.parseInt(strbookId);
-
-if (userRole != null) {
-
-	if (userRole.equals("member")) {
-
-		Cookie[] cookies = request.getCookies();
-		
-		if (bookIdList == null) {
-			bookIdList = new ArrayList<>();
-			session.setAttribute("book", bookIdList);
-		}
-		
-		bookIdList.add(book_id);
-
-		session.setAttribute("bookList", bookIdList);
-		response.sendRedirect("viewCart.jsp");
-	} else {
-		response.sendRedirect("login.jsp");
-
-	}
-
-} else {
-	response.sendRedirect("login.jsp");
-}
-%> --%>
+<%@ page import="java.net.*"%>
 
 <%
+// get book id
 int book_id = Integer.parseInt(request.getParameter("bookId"));
+
+// create new arraylist for items in shopping cart
 ArrayList<Integer> cartItems = new ArrayList<>();
+
+//get cookies
 Cookie[] cookies = request.getCookies();
+
+//check if cookies are empty		
 if (cookies != null) {
+
+	// for each loop to loop over every cookie in cookie array
 	for (Cookie cookie : cookies) {
 		if (cookie.getName().equals("shoppingCart")) {
 	String cartValue = cookie.getValue();
@@ -61,7 +36,7 @@ cartItems.add(book_id);
 //Update the cookie with the new shopping cart value
 String cartValue = "";
 for (int itemId : cartItems) {
-cartValue += itemId + ",";
+	cartValue += itemId + ",";
 }
 cartValue = cartValue.substring(0, cartValue.length() - 1);
 cartValue = URLEncoder.encode(cartValue, "UTF-8");

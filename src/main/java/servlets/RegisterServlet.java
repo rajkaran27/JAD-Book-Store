@@ -44,7 +44,7 @@ public class RegisterServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 
-		if (!username.isEmpty() && !email.isEmpty() && !password.isEmpty()) {
+		if (!(username==null && email==null && password ==null) || !(username.isEmpty() && email.isEmpty() && password.isEmpty())) {
 
 			PrintWriter out = response.getWriter();
 			HttpSession session = request.getSession();
