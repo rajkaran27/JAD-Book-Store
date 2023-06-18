@@ -33,10 +33,32 @@ public class AddToCartServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String path = request.getContextPath() + "/pages";
 
-	    PrintWriter out = response.getWriter();
-	    HttpSession session = request.getSession();
-	    
-	    
+		PrintWriter out = response.getWriter();
+		HttpSession session = request.getSession();
+
+		String userRole = (String) session.getAttribute("sessUserRole");
+		ArrayList<Integer> shoppingCart = (ArrayList<Integer>) session.getAttribute("book");
+		String strbookId = request.getParameter("bookId");
+		int book_id = Integer.parseInt(strbookId);
+
+		if (userRole != null) {
+			if (userRole.equals("member")) {
+
+				if (shoppingCart == null) {
+					shoppingCart = new ArrayList<>();
+				}
+
+				shoppingCart.add(book_id);
+
+				session.setAttribute("shoppingCart", shoppingCart);
+				response.sendRedirect(path+"//viewCart.jsp");
+
+			} else {
+				response.sendRedirect(path + "//login.jsp?errCode=accessDenied");
+			}
+		} else {
+			response.sendRedirect(path + "//login.jsp?errCode=accessDenied");
+		}
 	}
 
 }
