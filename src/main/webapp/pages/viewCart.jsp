@@ -186,14 +186,10 @@ table tbody td, table thead th {
 	<script>
 		function confirmDelete(bookId) {
 		  if (confirm("Are you sure you want to delete this item?")) {
-		    window.location.href = "<%=request.getContextPath()%>
-		/RemoveFromCartServlet?bookId="
-						+ bookId;
+		    window.location.href = "<%=request.getContextPath()%>/RemoveFromCartServlet?bookId="+ bookId;
 			}
-		} 
-		     window.location.href = "<%=request.getContextPath()%>/RemoveFromCartServlet?bookId=" + bookId; 
 		  }
-		}
+		
 	</script>
 	<%@ include file="footer.jsp"%>
 </body>
