@@ -135,11 +135,8 @@ table tbody td, table thead th {
 
 							<%
 							}
-
 							}
-
 							conn.close();
-
 							} catch (Exception e) {
 							e.printStackTrace();
 							out.println("Error: " + e);

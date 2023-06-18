@@ -71,7 +71,7 @@ public class UpdateMemberProfileServlet extends HttpServlet {
 			// Execute SQL query
 			int rowsAffected = pstmt.executeUpdate();
 
-			response.sendRedirect(path + "//memberProfile.jsp");
+			response.sendRedirect(path + "//memberProfile.jsp?memberId="+ member_id);
 
 			// Step 7: Close connection
 			conn.close();

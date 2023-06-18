@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ page import="java.sql.*"%>
+<%
+String userRole = (String) session.getAttribute("sessUserRole");
+
+if (userRole != null) {
+	if (userRole.equals("owner")) {
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,11 +36,7 @@ body {
 	String password = "";
 	/* int memberId = 0; */
 
-	String userRole = (String) session.getAttribute("sessUserRole");
-
-	if (userRole != null) {
-		if (userRole.equals("owner")) {
-			try {
+	try {
 
 		// Step 1: Load JDBC Driver
 		Class.forName("com.mysql.cj.jdbc.Driver");
@@ -65,10 +67,10 @@ body {
 		}
 		// Close connection
 		conn.close();
-			} catch (Exception e) {
+	} catch (Exception e) {
 		e.printStackTrace();
 		out.println("Error: " + e);
-			}
+	}
 	%>
 
 	<div class="container mt-4">

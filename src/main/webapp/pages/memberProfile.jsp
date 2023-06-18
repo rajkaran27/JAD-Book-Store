@@ -86,21 +86,21 @@ if (userRole != null) {
 				<h2 class="mb-4">Account Details</h2>
 				<form>
 					<div class="mb-3">
-						<label for="username" class="form-label">Username</label>
+						<label for="username" class="form-label">Username:</label>
 						<!-- <input
 							type="text" class="form-control" id="username" name="username"
 							value="Delvin" required> -->
 						<%=username%>
 					</div>
 					<div class="mb-3">
-						<label for="email" class="form-label">Email</label>
+						<label for="email" class="form-label">Email:</label>
 						<!-- <input
 							type="email" class="form-control" id="email" name="email"
 							required> -->
 						<%=email%>
 					</div>
 					<div class="mb-3">
-						<label for="password" class="form-label">Password</label>
+						<label for="password" class="form-label">Password:</label>
 						<!-- <input
 							type="password" class="form-control" id="password"
 							name="password" value="delv123" required> -->
@@ -114,11 +114,9 @@ if (userRole != null) {
 						href="updateMemberProfile.jsp?memberId=<%=memberId%>">Update
 						Info</a>
 				</div>
-				<div class="card-footer py-3 border-0">
-					<div class="text-center" style="color: #0C243C">
-						Delete Account? <a class="btn btn-danger btn-sm delete-button"
-							onclick="confirmDelete(<%=memberId%>)">Click Here</a>
-					</div>
+				<div class="text-center mt-5" style="color: #0C243C;">
+					<a class="btn btn-danger btn-sm delete-button"
+						onclick="confirmDelete(<%=memberId%>)">Delete Account</a>
 				</div>
 			</div>
 			<%

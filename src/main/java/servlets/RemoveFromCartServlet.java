@@ -39,49 +39,27 @@ public class RemoveFromCartServlet extends HttpServlet {
 			try {
 				int bookId = Integer.parseInt(bookIdStr);
 
-				// Get the shoppingCart cookie
-				Cookie[] cookies = request.getCookies();
-				if (cookies != null) {
-					for (Cookie cookie : cookies) {
-						if (cookie.getName().equals("_xsrf")) {
-							String cartValue = URLDecoder.decode(cookie.getValue(), "UTF-8");
-							String[] cartItemsStr = cartValue.split(",");
-							ArrayList<Integer> cartItems = new ArrayList<>();
-							for (String itemId : cartItemsStr) {
-								cartItems.add(Integer.parseInt(itemId));
-							}
-							// Remove the bookId from the cartItems
-							cartItems.remove(Integer.valueOf(bookId));
+				// Get the cart from the session
+				HttpSession session = request.getSession();
+				ArrayList<Integer> cart = (ArrayList<Integer>) session.getAttribute("shoppingCart");
 
-							// Update the cartValue
-							String newCartValue = "";
-							for (int itemId : cartItems) {
-								newCartValue += itemId + ",";
-							}
-							if (!newCartValue.isEmpty()) {
-								newCartValue = newCartValue.substring(0, newCartValue.length() - 1);
-							}
-							newCartValue = URLEncoder.encode(newCartValue, "UTF-8");
+				// Check if the cart exists
+				if (cart != null) {
+					// Remove the bookId from the cart
+					cart.remove(Integer.valueOf(bookId));
 
-							// Update the shoppingCart cookie
-							cookie.setValue(newCartValue);
-							response.addCookie(cookie);
-							// Redirect back to the view cart page
-							response.sendRedirect(path + "//viewCart.jsp");
-							return;
-						} else {
-							System.out.println("No cookies found");
-						}
-					}
+					// Update the cart in the session
+					session.setAttribute("shoppingCart", cart);
 				}
 			} catch (NumberFormatException e) {
 				// Handle invalid bookId format
 				e.printStackTrace();
 			}
-			// If the shoppingCart cookie doesn't exist or no redirect is performed in the
-			// loop,redirect to the view cart page here
-			/* response.sendRedirect(path + "//viewCart.jsp"); */
 		}
+
+		// Redirect back to the view cart page
+		response.sendRedirect(path + "//viewCart.jsp");
+
 	}
 }
 /*
@@ -116,4 +94,32 @@ public class RemoveFromCartServlet extends HttpServlet {
  * // Update the bookList in the session session.setAttribute("bookList",
  * bookList); } } catch (NumberFormatException e) { // Handle invalid bookId
  * format e.printStackTrace(); } }
+ */
+
+/*
+ * if (bookIdStr != null && !bookIdStr.isEmpty()) { try { int bookId =
+ * Integer.parseInt(bookIdStr);
+ * 
+ * // Get the shoppingCart cookie Cookie[] cookies = request.getCookies(); if
+ * (cookies != null) { for (Cookie cookie : cookies) { if
+ * (cookie.getName().equals("_xsrf")) { String cartValue =
+ * URLDecoder.decode(cookie.getValue(), "UTF-8"); String[] cartItemsStr =
+ * cartValue.split(","); ArrayList<Integer> cartItems = new ArrayList<>(); for
+ * (String itemId : cartItemsStr) { cartItems.add(Integer.parseInt(itemId)); }
+ * // Remove the bookId from the cartItems
+ * cartItems.remove(Integer.valueOf(bookId));
+ * 
+ * // Update the cartValue String newCartValue = ""; for (int itemId :
+ * cartItems) { newCartValue += itemId + ","; } if (!newCartValue.isEmpty()) {
+ * newCartValue = newCartValue.substring(0, newCartValue.length() - 1); }
+ * newCartValue = URLEncoder.encode(newCartValue, "UTF-8");
+ * 
+ * // Update the shoppingCart cookie cookie.setValue(newCartValue);
+ * response.addCookie(cookie); // Redirect back to the view cart page
+ * response.sendRedirect(path + "//viewCart.jsp"); return; } else {
+ * System.out.println("No cookies found"); } } } } catch (NumberFormatException
+ * e) { // Handle invalid bookId format e.printStackTrace(); } // If the
+ * shoppingCart cookie doesn't exist or no redirect is performed in the //
+ * loop,redirect to the view cart page here response.sendRedirect(path +
+ * "//viewCart.jsp"); }
  */
