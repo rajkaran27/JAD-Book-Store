@@ -34,17 +34,6 @@ if (userRole != null) {
 
 	<div class="container d-flex justify-content-center align-items-center">
 		<div>
-			<!-- <h2>Account Settings</h2> -->
-			<!-- 			<table class="table">
-				<thead>
-					<tr>
-						<th>Email</th>
-						<th>Username</th>
-						<th>Password</th>
-						<th>Options</th>
-					</tr>
-				</thead>
-				<tbody> -->
 			<%
 			try {
 
@@ -73,15 +62,6 @@ if (userRole != null) {
 					username = rs.getString("username");
 					password = rs.getString("password");
 			%>
-			<%-- 					<tr>
-						<td><%=email%></td>
-						<td><%=username%></td>
-						<td><%=password%></td>
-						<td><a class="btn btn-primary btn-sm update-button"
-							href="updateMember.jsp?memberId=<%=memberId%>">Update</a> <a
-							class="btn btn-danger btn-sm delete-button"
-							onclick="confirmDelete(<%=memberId%>)">Delete</a></td>
-					</tr> --%>
 			<div class="container">
 				<h2 class="mb-4">Account Details</h2>
 				<form>
@@ -127,8 +107,6 @@ if (userRole != null) {
 			out.println("Error :" + e);
 			}
 			%>
-			<!-- 				</tbody>
-			</table> -->
 		</div>
 	</div>
 
