@@ -37,7 +37,7 @@ public class AddToCartServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 
 		String userRole = (String) session.getAttribute("sessUserRole");
-		ArrayList<Integer> shoppingCart = (ArrayList<Integer>) session.getAttribute("book");
+		ArrayList<Integer> shoppingCart = (ArrayList<Integer>) session.getAttribute("shoppingCart");
 		String strbookId = request.getParameter("bookId");
 		int book_id = Integer.parseInt(strbookId);
 
