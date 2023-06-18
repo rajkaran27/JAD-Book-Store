@@ -2,6 +2,13 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ include file="header.jsp"%>
 <%@page import="java.sql.*"%>
+<%
+/* ===========================================================
+Author: Pranjal (2228396)
+Date: 9/6/2023
+Description: JAD CA1
+============================================================= */
+%>
 <!DOCTYPE html>
 <html>
 <head>

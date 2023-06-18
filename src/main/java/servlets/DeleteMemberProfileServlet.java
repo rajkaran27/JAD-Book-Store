@@ -33,6 +33,11 @@ public class DeleteMemberProfileServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		/* ===========================================================
+		Author: Pranjal (2228396)
+		Date: 9/6/2023
+		Description: JAD CA1
+		============================================================= */
 		String path = request.getContextPath() + "/pages";
 
 		String memberId = request.getParameter("memberId");

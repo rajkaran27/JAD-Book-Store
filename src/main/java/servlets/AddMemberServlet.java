@@ -32,6 +32,11 @@ public class AddMemberServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		/* ===========================================================
+		Author: Pranjal (2228396)
+		Date: 9/6/2023
+		Description: JAD CA1
+		============================================================= */
 		// TODO Auto-generated method stub
 		String path = request.getContextPath() + "/pages";
 

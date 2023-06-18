@@ -2,6 +2,13 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ page import="java.sql.*"%>
 <%
+/* ===========================================================
+Author: Pranjal (2228396)
+Date: 9/6/2023
+Description: JAD CA1
+============================================================= */
+%>
+<%
 String userRole = (String) session.getAttribute("sessUserRole");
 
 if (userRole != null) {
