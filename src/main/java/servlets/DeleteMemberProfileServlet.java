@@ -2,12 +2,13 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.Statement;
 
-import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,32 +16,31 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet("/UpdateMemberServlet")
-public class UpdateMemberServlet extends HttpServlet {
+/**
+ * Servlet implementation class DeleteMemberProfileServlet
+ */
+@WebServlet("/DeleteMemberProfileServlet")
+public class DeleteMemberProfileServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public UpdateMemberServlet() {
+	public DeleteMemberProfileServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String path = request.getContextPath() + "/pages";
 
-		String email = request.getParameter("email");
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
-		String member_id = request.getParameter("memberId");
+		String memberId = request.getParameter("memberId");
+		int member_id = Integer.parseInt(memberId);
 
 		PrintWriter out = response.getWriter();
-		HttpSession session = request.getSession();
 
 		try {
-
 			// Step 1: Load JDBC Driver
 			Class.forName("com.mysql.cj.jdbc.Driver");
 
@@ -50,25 +50,18 @@ public class UpdateMemberServlet extends HttpServlet {
 			// Step 3: Establish connection to URL
 			Connection conn = DriverManager.getConnection(connURL);
 
-			// Step 4: Create Statement object
-			Statement stmt = conn.createStatement();
-
 			// Step 5: Execute SQL Command
-			String sqlStr = "UPDATE members SET email=?,username=?,password=? WHERE member_id=?";
+			String sqlCall = "{CALL DeleteMember(?)}";
 
-			PreparedStatement pstmt = conn.prepareStatement(sqlStr);
+			CallableStatement cs = (CallableStatement) conn.prepareCall(sqlCall);
+			cs.setInt(1, member_id);
 
-			// Set parameter values for placeholders
-
-			pstmt.setString(1, email);
-			pstmt.setString(2, username);
-			pstmt.setString(3, password);
-			pstmt.setString(4, member_id);
-
-			// Execute SQL query
-			int rowsAffected = pstmt.executeUpdate();
-
-			response.sendRedirect(path + "//memberProfile.jsp?memberId=" + member_id);
+			// Step 5: Execute SQL query
+			ResultSet rs = cs.executeQuery();
+			HttpSession session = request.getSession();
+			/* session.setAttribute("sessUserRole", "Public User"); */
+			session.removeAttribute("sessUserRole");
+			response.sendRedirect(path + "/index.jsp");
 
 			// Step 7: Close connection
 			conn.close();

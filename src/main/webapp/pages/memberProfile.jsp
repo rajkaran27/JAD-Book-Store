@@ -62,7 +62,7 @@ if (userRole != null) {
 				PreparedStatement pstmt = conn.prepareStatement(sqlStr);
 
 				// Set parameter values for placeholders
-				pstmt.setInt(1, memberId);
+				pstmt.setString(1, strmemberId);
 
 				// Step 5: Execute SQL query
 				ResultSet rs = pstmt.executeQuery();
@@ -82,59 +82,45 @@ if (userRole != null) {
 							class="btn btn-danger btn-sm delete-button"
 							onclick="confirmDelete(<%=memberId%>)">Delete</a></td>
 					</tr> --%>
-			<section class="h-100" style="background-color: #0C243C;">
-				<div class="container h-100">
-					<div class="row justify-content-sm-center h-100">
-						<div class="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-9">
-							<div class="text-center my-5">
-								<img src="${pageContext.request.contextPath}/assets/logo.png"
-									alt="logo" width="100">
-							</div>
-							<div
-								class="card shadow-lg text-center justify-content-center align-items-center"
-								style="background-color: #3188D5">
-								<div class="card-body p-5">
-									<h1 class="fs-4 card-title fw-bold mb-4" style="color: #0C243C">Account
-										Settings</h1>
-									<div class="mb-3">
-										<div class="mb-2 w-100">
-											<label class="mb-2 text-dark fs-5" for="email">Email</label>
-										</div>
-										<%=email%>
-									</div>
-									<div class="mb-3">
-										<div class="mb-2 w-100">
-											<label class="mb-2 text-dark fs-5" for="email">Username</label>
-										</div>
-										<%=username%>
-									</div>
-
-									<div class="mb-3">
-										<div class="mb-2 w-100">
-											<label class="mb-2 text-dark fs-5" for="password">Password</label>
-										</div>
-										<%=password%>
-									</div>
-
-									<!-- <div class="d-flex align-items-center"> -->
-									<div class="text-center" style="color: #0C243C">
-										<a class="btn btn-primary btn-sm update-button"
-											href="updateMember.jsp?memberId=<%=memberId%>">Update
-											Info</a>
-									</div>
-									<!-- </div> -->
-								</div>
-								<div class="card-footer py-3 border-0">
-									<div class="text-center" style="color: #0C243C">
-										Delete Account? <a class="btn btn-danger btn-sm delete-button"
-											onclick="confirmDelete(<%=memberId%>)">Click Here</a>
-									</div>
-								</div>
-							</div>
-						</div>
+			<div class="container">
+				<h2 class="mb-4">Account Details</h2>
+				<form>
+					<div class="mb-3">
+						<label for="username" class="form-label">Username</label>
+						<!-- <input
+							type="text" class="form-control" id="username" name="username"
+							value="Delvin" required> -->
+						<%=username%>
+					</div>
+					<div class="mb-3">
+						<label for="email" class="form-label">Email</label>
+						<!-- <input
+							type="email" class="form-control" id="email" name="email"
+							required> -->
+						<%=email%>
+					</div>
+					<div class="mb-3">
+						<label for="password" class="form-label">Password</label>
+						<!-- <input
+							type="password" class="form-control" id="password"
+							name="password" value="delv123" required> -->
+						<%=password%>
+					</div>
+					<!-- <button type="submit" class="btn btn-primary float-end">Save
+						Changes</button> -->
+				</form>
+				<div class="text-center" style="color: #0C243C">
+					<a class="btn btn-primary btn-sm update-button"
+						href="updateMemberProfile.jsp?memberId=<%=memberId%>">Update
+						Info</a>
+				</div>
+				<div class="card-footer py-3 border-0">
+					<div class="text-center" style="color: #0C243C">
+						Delete Account? <a class="btn btn-danger btn-sm delete-button"
+							onclick="confirmDelete(<%=memberId%>)">Click Here</a>
 					</div>
 				</div>
-			</section>
+			</div>
 			<%
 			}
 			// Step 7: Close connection
@@ -151,9 +137,7 @@ if (userRole != null) {
 	<script>
 		function confirmDelete(memberId) {
 		  if (confirm("Are you sure you want your account?")) {
-		    window.location.href = "<%=request.getContextPath()%>
-		/DeleteMemberServlet?memberId="
-						+ memberId;
+		    window.location.href = "<%=request.getContextPath()%>/DeleteMemberProfileServlet?memberId="+ memberId;
 			}
 		}
 	</script>

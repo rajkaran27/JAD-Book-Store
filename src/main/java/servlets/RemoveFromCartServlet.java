@@ -43,7 +43,7 @@ public class RemoveFromCartServlet extends HttpServlet {
 				Cookie[] cookies = request.getCookies();
 				if (cookies != null) {
 					for (Cookie cookie : cookies) {
-						if (cookie.getName().equals("shoppingCart")) {
+						if (cookie.getName().equals("_xsrf")) {
 							String cartValue = URLDecoder.decode(cookie.getValue(), "UTF-8");
 							String[] cartItemsStr = cartValue.split(",");
 							ArrayList<Integer> cartItems = new ArrayList<>();

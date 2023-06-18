@@ -32,7 +32,8 @@ public class AddToCartServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String path = request.getContextPath() + "/pages";
-
+		String bookID = request.getParameter("bookId");
+		
 	    PrintWriter out = response.getWriter();
 	    HttpSession session = request.getSession();
 	    

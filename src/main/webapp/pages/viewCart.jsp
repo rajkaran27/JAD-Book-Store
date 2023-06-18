@@ -60,8 +60,8 @@ table tbody td, table thead th {
 	<div class="container mt-5">
 		<div class="row">
 			<div class="offset-lg-3 col-lg-6 col-md-12 col-12 text-center">
-				<img src="${pageContext.request.contextPath}/assets/bag.svg"
-					alt="" class="img-fluid mb-4">
+				<img src="${pageContext.request.contextPath}/assets/bag.svg" alt=""
+					class="img-fluid mb-4">
 				<h2>Your shopping cart is empty</h2>
 				<p class="mb-4">Keep Shopping!</p>
 				<a href="index.jsp" class="btn btn-primary">Explore Books</a>
@@ -193,7 +193,7 @@ table tbody td, table thead th {
 	<script>
 		function confirmDelete(bookId) {
 		  if (confirm("Are you sure you want to delete this item?")) {
-		    window.location.href = "<%=request.getContextPath()%>/RemoveFromCartServlet?bookId=" + bookId;
+		     window.location.href = "<%=request.getContextPath()%>/RemoveFromCartServlet?bookId=" + bookId; 
 		  }
 		}
 	</script>

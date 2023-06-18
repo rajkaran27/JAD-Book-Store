@@ -57,7 +57,7 @@
 							<%
 							if (message != null && message.equals("invalidLogin")) {
 							%>
-							<div class="m-3">
+							<div class="m-3" style="color:#0C243C">
 								<p class="text-center">Wrong username or password. Try
 									again.</p>
 							</div>
