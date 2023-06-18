@@ -59,6 +59,7 @@ public class AddToCartServlet extends HttpServlet {
 		} else {
 			response.sendRedirect(path + "//login.jsp?errCode=accessDenied");
 		}
+
 	}
 
 }

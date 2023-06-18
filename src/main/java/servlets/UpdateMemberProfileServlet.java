@@ -15,14 +15,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet("/UpdateMemberServlet")
-public class UpdateMemberServlet extends HttpServlet {
+/**
+ * Servlet implementation class UpdateMemberProfileServlet
+ */
+@WebServlet("/UpdateMemberProfileServlet")
+public class UpdateMemberProfileServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public UpdateMemberServlet() {
+	public UpdateMemberProfileServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -68,7 +71,7 @@ public class UpdateMemberServlet extends HttpServlet {
 			// Execute SQL query
 			int rowsAffected = pstmt.executeUpdate();
 
-			response.sendRedirect(path + "//memberProfile.jsp?memberId=" + member_id);
+			response.sendRedirect(path + "//memberProfile.jsp");
 
 			// Step 7: Close connection
 			conn.close();
