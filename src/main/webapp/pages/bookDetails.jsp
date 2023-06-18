@@ -27,6 +27,7 @@
 	String author = "";
 	String publisher = "";
 	String category = "";
+	int rating = 0;
 	double price = 0;
 
 	try {
@@ -61,6 +62,7 @@
 			publisher = rs.getString("publisher");
 			category = rs.getString("category");
 			pubDate = rs.getString("publication_date");
+			rating = rs.getInt("rating");
 			price = rs.getDouble("price");
 
 		}
@@ -72,7 +74,7 @@
 		out.println("Error: " + e);
 	}
 	%>
-	<div class="container mt-4" style="color:#0C243C;">
+	<div class="container mt-4" style="color: #0C243C;">
 		<div class="row">
 			<div class="col-md-3">
 				<img src=<%=src%> class="img-fluid" alt="Book Image">
@@ -91,6 +93,12 @@
 
 
 						<div class="row text-center my-3">
+							<div class="col">
+								<img
+									src="https://cdn-icons-png.flaticon.com/128/1828/1828970.png"
+									style="height: 30px;">
+								<p><%=rating %>/5</p>
+							</div>
 							<div class="col">
 								<img src="https://cdn-icons-png.flaticon.com/128/2/2273.png"
 									style="height: 30px;">

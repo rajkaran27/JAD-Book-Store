@@ -57,7 +57,7 @@ table tbody td, table thead th {
 
 	if (cartItems.size() == 0) {
 	%>
-	<div class="container">
+	<div class="container mt-5">
 		<div class="row">
 			<div class="offset-lg-3 col-lg-6 col-md-12 col-12 text-center">
 				<img src="${pageContext.request.contextPath}/assets/bag.svg"
