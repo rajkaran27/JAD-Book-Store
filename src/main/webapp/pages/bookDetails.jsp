@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ page import="java.sql.*"%>
 <!DOCTYPE html>
@@ -131,7 +131,7 @@
 										$<%=price%></h4>
 								</div>
 								<div class='col'>
-									<form action="cartFunction.jsp" method="POST">
+									<form action="<%=request.getContextPath()%>/AddToCartServlet" method="POST">
 										<input type="hidden" name="bookId" value="<%=book_id%>">
 										<button type="submit" class="btn btn-primary btn-sm">Add
 											to Cart</button>
