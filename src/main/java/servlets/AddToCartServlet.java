@@ -46,6 +46,7 @@ public class AddToCartServlet extends HttpServlet {
 
 				if (shoppingCart == null) {
 					shoppingCart = new ArrayList<>();
+					session.setAttribute("shoppingCart", shoppingCart);
 				}
 
 				shoppingCart.add(book_id);

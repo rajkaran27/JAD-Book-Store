@@ -41,9 +41,9 @@ table tbody td, table thead th {
 	<%
 	double totalCost = 0;
 
-	ArrayList<Integer> cart = (ArrayList<Integer>) session.getAttribute("shoppingCart");
+	ArrayList<Integer> shoppingCart = (ArrayList<Integer>) session.getAttribute("shoppingCart");
 
-	if (cart == null || cart.isEmpty()) {
+	if (shoppingCart == null || shoppingCart.isEmpty()) {
 	%>
 
 	<div class="container mt-5">
@@ -93,8 +93,8 @@ table tbody td, table thead th {
 								String sqlStr = "SELECT books.*, authors.author_name,categories.category_name FROM books JOIN authors ON books.author_id=authors.author_id JOIN categories ON books.category_id=categories.category_id WHERE book_id=?;";
 								PreparedStatement pstmt = conn.prepareStatement(sqlStr);
 
-								for (int i = 0; i < cart.size(); i++) {
-									pstmt.setInt(1, cart.get(i));
+								for (Integer bookI : shoppingCart) {
+									pstmt.setInt(1, bookI);
 
 									// Step 6: Execute SQL query
 									ResultSet rs = pstmt.executeQuery();
@@ -109,7 +109,6 @@ table tbody td, table thead th {
 								totalCost += price;
 							%>
 							<tr>
-
 								<th scope="row">
 									<div class="d-flex align-items-center">
 										<img src="<%=src%>" class="img-fluid rounded-3"
@@ -154,7 +153,7 @@ table tbody td, table thead th {
 			<div class="col-lg-4 col-xl-3">
 				<%
 				//get total number of books
-				int totalBooks = cart.size();
+				int totalBooks = shoppingCart.size();
 				%>
 				<div class="card">
 					<div class="card-body">
